@@ -2,36 +2,38 @@
 /**
  * Template part for displaying posts by categories of local, international & business
  */
-
-$categories = array( 'local', 'international', 'business' );
+$categories   = ['local', 'international', 'business'];
 $excludePosts = getExcludedPostsFromPlacements();
 ?>
 
 <div class="category-listing p-3 h-100">
     <div class="row">
-        <?php foreach ( $categories as $key => $category ) : ?>
+        <?php foreach ($categories as $key => $category) : ?>
             <div class="col-lg-4">
                 <?php
-                $categoryObj = get_category_by_slug( $category );
-                $i = 1;
-                ?>
+				$categoryObj = get_category_by_slug($category);
+				$i           = 1;
+				?>
 
-                <?php if ( $categoryObj instanceof WP_Term ) : ?>
+                <?php if ($categoryObj instanceof WP_Term) : ?>
                     <h2 class="section-title<?php echo $key !== 0 ? ' mt-4 mt-lg-0' : ''; ?>">
-                        <a href="<?php echo esc_url( get_category_link( $categoryObj ) ); ?>">
-                            <i class="fas fa-caret-right"></i> <?php echo esc_html( $categoryObj->name ); ?>
+                        <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
+                            <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
                         </a>
                     </h2>
 
-                    <?php $posts = new WP_Query( array( 'category_name' => $categoryObj->slug,
-                        'posts_per_page' => 5, 'post__not_in' => $excludePosts ) ); ?>
+                    <?php $posts = new WP_Query([
+                    	'category_name' => $categoryObj->slug,
+                    	'posts_per_page'=> 5,
+                    	'post__not_in'  => $excludePosts
+                    ]); ?>
 
-                    <?php if ( $posts->have_posts() ) : ?>
-                        <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
-                            <?php if ( $i == 1 ) : ?>
+                    <?php if ($posts->have_posts()) : ?>
+                        <?php while ($posts->have_posts()) : $posts->the_post(); ?>
+                            <?php if ($i == 1) : ?>
                                 <a href="<?php the_permalink(); ?>" class="card the-story">
-                                    <?php the_post_thumbnail( 'wide', array(
-                                            'class' => 'card-img-top img-fluid', 'alt' => get_the_title() ) ); ?>
+                                    <?php the_post_thumbnail('wide', [
+                                    	'class' => 'card-img-top img-fluid', 'alt' => get_the_title()]); ?>
 
                                     <div class="card-body">
                                         <h3 class="card-title story-title">
@@ -45,8 +47,8 @@ $excludePosts = getExcludedPostsFromPlacements();
                                         <a href="<?php the_permalink(); ?>" class="the-story d-block mt-3">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-3">
-                                                    <?php the_post_thumbnail( 'thumbnail', array(
-                                                            'class' => 'img-fluid story-image', 'alt' => get_the_title() ) ); ?>
+                                                    <?php the_post_thumbnail('thumbnail', [
+                                                    	'class' => 'img-fluid story-image', 'alt' => get_the_title()]); ?>
                                                 </div>
 
                                                 <div class="col-9">

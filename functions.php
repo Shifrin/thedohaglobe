@@ -10,45 +10,45 @@ require get_template_directory() . '/classes/class-placement-posts.php';
  */
 function themeSetup()
 {
-    // Add default posts and comments RSS feed links to head.
-    add_theme_support('automatic-feed-links');
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support('automatic-feed-links');
 
-    /*
-     * Let WordPress manage the document title.
-     */
-    add_theme_support('title-tag');
+	/*
+	 * Let WordPress manage the document title.
+	 */
+	add_theme_support('title-tag');
 
-    /*
-     * Enable support for Post Thumbnails on posts and pages.
-     */
-    add_theme_support('post-thumbnails');
-    add_image_size('featured', 1200, 600, true);
-    add_image_size('wide', 1000, 600, true);
-    add_image_size('square', 600, 600, true);
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 */
+	add_theme_support('post-thumbnails');
+	add_image_size('featured', 1200, 600, true);
+	add_image_size('wide', 1000, 600, true);
+	add_image_size('square', 600, 600, true);
 
-    // This theme uses wp_nav_menu() in two locations.
-    register_nav_menus(
-        [
-            'primary'   => __('Primary Menu'),
-            'secondary' => __('Secondary Menu'),
-            'footer'    => __('Footer Menu'),
-        ]
-    );
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus(
+		[
+			'primary'   => __('Primary Menu'),
+			'secondary' => __('Secondary Menu'),
+			'footer'    => __('Footer Menu'),
+		]
+	);
 
-    /*
-     * Switch default core markup for search form, comment form, and comments
-     * to output valid HTML5.
-     */
-    add_theme_support(
-        'html5',
-        [
-            'search-form',
-            'comment-form',
-            'comment-list',
-            'gallery',
-            'caption',
-        ]
-    );
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support(
+		'html5',
+		[
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		]
+	);
 }
 
 // Hooking up our 'themeSetup' function to 'after_setup_theme' hook
@@ -59,12 +59,12 @@ add_action('after_setup_theme', 'themeSetup');
  */
 function themeEnqueueStyles()
 {
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
-    wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
-    //wp_enqueue_style( 'font-sans', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' );
-    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700');
-    wp_enqueue_style('core', get_stylesheet_uri() . '?' . filemtime(get_stylesheet_directory() .
-        '/style.css'));
+	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
+	//wp_enqueue_style( 'font-sans', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' );
+	wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700');
+	wp_enqueue_style('core', get_stylesheet_uri() . '?' . filemtime(get_stylesheet_directory() .
+		'/style.css'));
 }
 
 add_action('wp_enqueue_scripts', 'themeEnqueueStyles');
@@ -74,11 +74,11 @@ add_action('wp_enqueue_scripts', 'themeEnqueueStyles');
  */
 function themeEnqueueScripts()
 {
-    wp_enqueue_script(
-        'bootstrap',
-        get_template_directory_uri() . '/js/bootstrap.bundle.min.js',
-        ['jquery']
-    );
+	wp_enqueue_script(
+		'bootstrap',
+		get_template_directory_uri() . '/js/bootstrap.bundle.min.js',
+		['jquery']
+	);
 }
 
 add_action('wp_enqueue_scripts', 'themeEnqueueScripts');
@@ -92,9 +92,9 @@ add_action('wp_enqueue_scripts', 'themeEnqueueScripts');
  */
 function removeDefaultImageSizes($sizes)
 {
-    unset($sizes['medium'], $sizes['large'], $sizes['medium_large']);
+	unset($sizes['medium'], $sizes['large'], $sizes['medium_large']);
 
-    return $sizes;
+	return $sizes;
 }
 
 add_filter('intermediate_image_sizes_advanced', 'removeDefaultImageSizes');
@@ -107,27 +107,27 @@ add_filter('intermediate_image_sizes_advanced', 'removeDefaultImageSizes');
  */
 function addPlacementTaxonomy()
 {
-    register_taxonomy('placement', 'post', [
-        'public'             => false, // we make this private
-        'show_ui'            => true,
-        'show_in_rest'       => true,
-        'show_in_quick_edit' => false,
-        'show_admin_column'  => true,
-        // This array of options controls the labels displayed in the WordPress Admin UI
-        'labels' => [
-            'name'              => _x('Placements', 'taxonomy general name'),
-            'singular_name'     => _x('Placement', 'taxonomy singular name'),
-            'search_items'      => __('Search Placements'),
-            'all_items'         => __('All Placements'),
-            'parent_item'       => __('Parent Placement'),
-            'parent_item_colon' => __('Parent Placement:'),
-            'edit_item'         => __('Edit Placement'),
-            'update_item'       => __('Update Placement'),
-            'add_new_item'      => __('Add New Placement'),
-            'new_item_name'     => __('New Placement Name'),
-            'menu_name'         => __('Placements'),
-        ],
-    ]);
+	register_taxonomy('placement', 'post', [
+		'public'             => false, // we make this private
+		'show_ui'            => true,
+		'show_in_rest'       => true,
+		'show_in_quick_edit' => false,
+		'show_admin_column'  => true,
+		// This array of options controls the labels displayed in the WordPress Admin UI
+		'labels' => [
+			'name'              => _x('Placements', 'taxonomy general name'),
+			'singular_name'     => _x('Placement', 'taxonomy singular name'),
+			'search_items'      => __('Search Placements'),
+			'all_items'         => __('All Placements'),
+			'parent_item'       => __('Parent Placement'),
+			'parent_item_colon' => __('Parent Placement:'),
+			'edit_item'         => __('Edit Placement'),
+			'update_item'       => __('Update Placement'),
+			'add_new_item'      => __('Add New Placement'),
+			'new_item_name'     => __('New Placement Name'),
+			'menu_name'         => __('Placements'),
+		],
+	]);
 }
 
 add_action('init', 'addPlacementTaxonomy', 0);
@@ -137,29 +137,29 @@ add_action('init', 'addPlacementTaxonomy', 0);
  */
 function addPlacementTaxonomyFilter()
 {
-    global $typenow;
+	global $typenow;
 
-    $postType = 'post';
+	$postType = 'post';
 
-    if ($typenow == $postType) {
-        $selected = isset($_GET['placement']) ? $_GET['placement'] : 0;
+	if ($typenow == $postType) {
+		$selected = isset($_GET['placement']) ? $_GET['placement'] : 0;
 
-        if (!is_numeric($selected)) {
-            $term = get_term_by('slug', $_GET['placement'], 'placement');
+		if (!is_numeric($selected)) {
+			$term = get_term_by('slug', $_GET['placement'], 'placement');
 
-            if ($term) {
-                $selected = $term->term_id;
-            }
-        }
+			if ($term) {
+				$selected = $term->term_id;
+			}
+		}
 
-        wp_dropdown_categories([
-            'show_option_all' => 'All Placements',
-            'orderby'         => 'name',
-            'name'            => 'placement',
-            'selected'        => $selected,
-            'taxonomy'        => 'placement',
-        ]);
-    }
+		wp_dropdown_categories([
+			'show_option_all' => 'All Placements',
+			'orderby'         => 'name',
+			'name'            => 'placement',
+			'selected'        => $selected,
+			'taxonomy'        => 'placement',
+		]);
+	}
 }
 
 add_action('restrict_manage_posts', 'addPlacementTaxonomyFilter');
@@ -171,18 +171,18 @@ add_action('restrict_manage_posts', 'addPlacementTaxonomyFilter');
  */
 function filterPostsByPlacementTaxonomy($query)
 {
-    global $pagenow;
+	global $pagenow;
 
-    $queriedPostType  = isset($query->query_vars['post_type']) ? $query->query_vars['post_type'] : '';
-    $queriedGTaxonomy = isset($query->query_vars['placement']) ? $query->query_vars['placement'] : '';
+	$queriedPostType  = isset($query->query_vars['post_type']) ? $query->query_vars['post_type'] : '';
+	$queriedGTaxonomy = isset($query->query_vars['placement']) ? $query->query_vars['placement'] : '';
 
-    if ($pagenow == 'edit.php' && $queriedPostType == 'post' && is_numeric($queriedGTaxonomy)) {
-        $term = get_term_by('id', $queriedGTaxonomy, 'placement');
+	if ($pagenow == 'edit.php' && $queriedPostType == 'post' && is_numeric($queriedGTaxonomy)) {
+		$term = get_term_by('id', $queriedGTaxonomy, 'placement');
 
-        if ($term) {
-            $query->query_vars['placement'] = $term->slug;
-        }
-    }
+		if ($term) {
+			$query->query_vars['placement'] = $term->slug;
+		}
+	}
 }
 
 add_filter('parse_query', 'filterPostsByPlacementTaxonomy');
@@ -196,7 +196,7 @@ add_filter('parse_query', 'filterPostsByPlacementTaxonomy');
  */
 function customExcerptLength($length)
 {
-    return 25;
+	return 25;
 }
 
 add_filter('excerpt_length', 'customExcerptLength', 999);
@@ -210,7 +210,7 @@ add_filter('excerpt_length', 'customExcerptLength', 999);
  */
 function excerptMore($more)
 {
-    return '...';
+	return '...';
 }
 
 add_filter('excerpt_more', 'excerptMore');
@@ -222,20 +222,20 @@ add_filter('excerpt_more', 'excerptMore');
  */
 function getTheFilteredCategories()
 {
-    $categories = get_the_category();
-    $exclude    = ['columnist', 'quotes'];
+	$categories = get_the_category();
+	$exclude    = ['columnist', 'quotes'];
 
-    foreach ($categories as $key => $category) {
-        if (in_array($category->slug, $exclude)) {
-            unset($categories[$key]);
-        }
+	foreach ($categories as $key => $category) {
+		if (in_array($category->slug, $exclude)) {
+			unset($categories[$key]);
+		}
 
-        if (verifyColumnist($category->name)) {
-            unset($categories[$key]);
-        }
-    }
+		if (verifyColumnist($category->name)) {
+			unset($categories[$key]);
+		}
+	}
 
-    return array_values($categories);
+	return array_values($categories);
 }
 
 /**
@@ -251,20 +251,20 @@ function getTheFilteredCategories()
  */
 function getFilteredCategories($args)
 {
-    $categories = get_categories($args);
-    $exclude    = ['columnist', 'quotes'];
+	$categories = get_categories($args);
+	$exclude    = ['columnist', 'quotes'];
 
-    foreach ($categories as $key => $category) {
-        if (in_array($category->slug, $exclude)) {
-            unset($categories[$key]);
-        }
+	foreach ($categories as $key => $category) {
+		if (in_array($category->slug, $exclude)) {
+			unset($categories[$key]);
+		}
 
-        if (verifyColumnist($category->name)) {
-            unset($categories[$key]);
-        }
-    }
+		if (verifyColumnist($category->name)) {
+			unset($categories[$key]);
+		}
+	}
 
-    return array_values($categories);
+	return array_values($categories);
 }
 
 /**
@@ -274,18 +274,18 @@ function getFilteredCategories($args)
  */
 function getTheColumnist()
 {
-    $categories      = get_the_category();
-    $columnistCatObj = get_category_by_slug('columnist');
+	$categories      = get_the_category();
+	$columnistCatObj = get_category_by_slug('columnist');
 
-    if ($columnistCatObj instanceof WP_Term) {
-        foreach ($categories as $category) {
-            if ($category->parent == $columnistCatObj->term_id) {
-                return $category;
-            }
-        }
-    }
+	if ($columnistCatObj instanceof WP_Term) {
+		foreach ($categories as $category) {
+			if ($category->parent == $columnistCatObj->term_id) {
+				return $category;
+			}
+		}
+	}
 
-    return null;
+	return null;
 }
 
 /**
@@ -297,19 +297,19 @@ function getTheColumnist()
  */
 function verifyColumnist($name)
 {
-    $columnistCatObj = get_category_by_slug('columnist');
+	$columnistCatObj = get_category_by_slug('columnist');
 
-    if ($columnistCatObj instanceof WP_Term) {
-        $children = get_categories(['parent' => $columnistCatObj->term_id]);
+	if ($columnistCatObj instanceof WP_Term) {
+		$children = get_categories(['parent' => $columnistCatObj->term_id]);
 
-        foreach ($children as $child) {
-            if ($child->name == $name) {
-                return true;
-            }
-        }
-    }
+		foreach ($children as $child) {
+			if ($child->name == $name) {
+				return true;
+			}
+		}
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -321,15 +321,15 @@ function verifyColumnist($name)
  */
 function isEditorInChief($term)
 {
-    $editorInChief = 'Khalid Al Sayed';
+	$editorInChief = 'Khalid Al Sayed';
 
-    if ($term instanceof WP_Term) {
-        return $term->name == $editorInChief;
-    } elseif (is_string($term)) {
-        return $term == $editorInChief;
-    }
+	if ($term instanceof WP_Term) {
+		return $term->name == $editorInChief;
+	} elseif (is_string($term)) {
+		return $term == $editorInChief;
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -339,20 +339,20 @@ function isEditorInChief($term)
  */
 function getPostAuthorName()
 {
-    global $post;
+	global $post;
 
-    $author    = get_post_meta($post->ID, 'author', true);
-    $columnist = getTheColumnist();
+	$author    = get_post_meta($post->ID, 'author', true);
+	$columnist = getTheColumnist();
 
-    if ($columnist instanceof WP_Term) {
-        $author = $columnist->name;
-    }
+	if ($columnist instanceof WP_Term) {
+		$author = $columnist->name;
+	}
 
-    if (!$author) {
-        $author = get_bloginfo('name');
-    }
+	if (!$author) {
+		$author = get_bloginfo('name');
+	}
 
-    return $author;
+	return $author;
 }
 
 /**
@@ -364,22 +364,22 @@ function getPostAuthorName()
  */
 function getTheColumnistPictureUrl($term)
 {
-    // Default image for columnist
-    $srcDefault = get_template_directory_uri() . '/img/columnist.png';
-    $src        = false;
+	// Default image for columnist
+	$srcDefault = get_template_directory_uri() . '/img/columnist.png';
+	$src        = false;
 
-    if (!($term instanceof WP_Term)) {
-        $field = is_numeric($term) ? 'term_id' : 'slug';
-        $value = is_numeric($term) ? $term : sanitize_title($term);
-        $term  = get_term_by($field, $value, 'category');
-    }
+	if (!($term instanceof WP_Term)) {
+		$field = is_numeric($term) ? 'term_id' : 'slug';
+		$value = is_numeric($term) ? $term : sanitize_title($term);
+		$term  = get_term_by($field, $value, 'category');
+	}
 
-    if ($term instanceof WP_Term && function_exists('get_wp_term_image')) {
-        $src = get_wp_term_image($term->term_id);
-    }
+	if ($term instanceof WP_Term && function_exists('get_wp_term_image')) {
+		$src = get_wp_term_image($term->term_id);
+	}
 
-    // Use default image
-    return !empty($src) ? $src : $srcDefault;
+	// Use default image
+	return !empty($src) ? $src : $srcDefault;
 }
 
 /**
@@ -389,16 +389,16 @@ function getTheColumnistPictureUrl($term)
  */
 function addPostViewCount($postID)
 {
-    $countKey = 'views';
-    $count    = get_post_meta($postID, $countKey, true);
+	$countKey = 'views';
+	$count    = get_post_meta($postID, $countKey, true);
 
-    if ($count) {
-        // Add new count and update the views
-        update_post_meta($postID, $countKey, ($count + 1));
-    } else {
-        // Add new count
-        add_post_meta($postID, $countKey, 1);
-    }
+	if ($count) {
+		// Add new count and update the views
+		update_post_meta($postID, $countKey, ($count + 1));
+	} else {
+		// Add new count
+		add_post_meta($postID, $countKey, 1);
+	}
 }
 
 /**
@@ -406,14 +406,14 @@ function addPostViewCount($postID)
  */
 function trackPostViews()
 {
-    // Current post
-    global $post;
+	// Current post
+	global $post;
 
-    if (is_single() && !is_preview()) {
-        addPostViewCount($post->ID);
-    }
+	if (is_single() && !is_preview()) {
+		addPostViewCount($post->ID);
+	}
 
-    return;
+	return;
 }
 
 // To keep the accurate count, lets get rid of pre fetching
@@ -428,14 +428,14 @@ add_action('wp_head', 'trackPostViews');
  */
 function getLeadPosts()
 {
-    $posts = get_transient('placement_lead_posts');
+	$posts = get_transient('placement_lead_posts');
 
-    if (!$posts) {
-        $obj   = new PlacementPosts('Lead');
-        $posts = $obj->getPosts();
-    }
+	if (!$posts) {
+		$obj   = new PlacementPosts('Lead');
+		$posts = $obj->getPosts();
+	}
 
-    return $posts;
+	return $posts;
 }
 
 /**
@@ -445,14 +445,14 @@ function getLeadPosts()
  */
 function getBriefPosts()
 {
-    $posts = get_transient('placement_brief_posts');
+	$posts = get_transient('placement_brief_posts');
 
-    if (!$posts) {
-        $obj   = new PlacementPosts('Brief');
-        $posts = $obj->getPosts();
-    }
+	if (!$posts) {
+		$obj   = new PlacementPosts('Brief');
+		$posts = $obj->getPosts();
+	}
 
-    return $posts;
+	return $posts;
 }
 
 /**
@@ -462,14 +462,14 @@ function getBriefPosts()
  */
 function getNewsSectionPosts()
 {
-    $posts = get_transient('placement_news_section_posts');
+	$posts = get_transient('placement_news_section_posts');
 
-    if (!$posts) {
-        $obj   = new PlacementPosts('News Section');
-        $posts = $obj->getPosts();
-    }
+	if (!$posts) {
+		$obj   = new PlacementPosts('News Section');
+		$posts = $obj->getPosts();
+	}
 
-    return $posts;
+	return $posts;
 }
 
 /**
@@ -481,22 +481,22 @@ function getNewsSectionPosts()
  */
 function getTrendingNews($number_of_posts)
 {
-    $quoteCat   = get_category_by_slug('quotes');
-    $excludeCat = '';
+	$quoteCat   = get_category_by_slug('quotes');
+	$excludeCat = '';
 
-    if ($quoteCat instanceof WP_Term) {
-        $excludeCat .= '-' . $quoteCat->term_id;
-    }
+	if ($quoteCat instanceof WP_Term) {
+		$excludeCat .= '-' . $quoteCat->term_id;
+	}
 
-    return new WP_Query([
-        'cat'            => $excludeCat,
-        'meta_key'       => 'views',
-        'orderby'        => 'meta_value_num',
-        'posts_per_page' => $number_of_posts,
-        'date_query'     => [
-            ['after' => '-3 days']
-        ],
-    ]);
+	return new WP_Query([
+		'cat'            => $excludeCat,
+		'meta_key'       => 'views',
+		'orderby'        => 'meta_value_num',
+		'posts_per_page' => $number_of_posts,
+		// 'date_query'     => [
+		//     ['after' => '-3 days']
+		// ],
+	]);
 }
 
 /**
@@ -506,14 +506,14 @@ function getTrendingNews($number_of_posts)
  */
 function setExcludedPostsFromPlacements($post_ID)
 {
-    if (false === ($posts = get_transient('placement_exclude_posts'))) {
-        set_transient('placement_exclude_posts', [$post_ID], 12 * HOUR_IN_SECONDS);
-    } else {
-        $posts[] = $post_ID;
+	if (false === ($posts = get_transient('placement_exclude_posts'))) {
+		set_transient('placement_exclude_posts', [$post_ID], 12 * HOUR_IN_SECONDS);
+	} else {
+		$posts[] = $post_ID;
 
-        delete_transient('placement_exclude_posts');
-        set_transient('placement_exclude_posts', $posts, 12 * HOUR_IN_SECONDS);
-    }
+		delete_transient('placement_exclude_posts');
+		set_transient('placement_exclude_posts', $posts, 12 * HOUR_IN_SECONDS);
+	}
 }
 
 /**
@@ -523,20 +523,20 @@ function setExcludedPostsFromPlacements($post_ID)
  */
 function getExcludedPostsFromPlacements()
 {
-    return (false === ($posts = get_transient('placement_exclude_posts'))) ? [] : $posts;
+	return (false === ($posts = get_transient('placement_exclude_posts'))) ? [] : $posts;
 }
 
 /**
  * Update 'placement_exclude_posts' cache.
  */
 add_action('save_post', function ($postID, $post) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
 
-    if ($post->post_type == 'post') {
-        delete_transient('placement_exclude_posts');
-    }
+	if ($post->post_type == 'post') {
+		delete_transient('placement_exclude_posts');
+	}
 }, 10, 2);
 
 /**
@@ -546,29 +546,29 @@ add_action('save_post', function ($postID, $post) {
  */
 function updateImageCaption($html, $id, $caption, $title, $align, $url, $size, $alt)
 {
-    // Remove wordpress default shorcode to add image caption
-    remove_filter('image_send_to_editor', 'image_add_caption', 20);
+	// Remove wordpress default shorcode to add image caption
+	remove_filter('image_send_to_editor', 'image_add_caption', 20);
 
-    $src  = wp_get_attachment_image_src($id, 'full');
-    $html = '<figure class="figure" id="attachment_' . $id . '">';
+	$src  = wp_get_attachment_image_src($id, 'full');
+	$html = '<figure class="figure" id="attachment_' . $id . '">';
 
-    if ($url) {
-        $html = '<a href="' . esc_url($url) . '">';
-        $html .= '<img src="' . $src[0] . '" alt="' . esc_html($alt) . '" class="align-' . $align
-            . ' figure-img img-fluid' . '" width="' . $src[1] . '" height="' . $src[2] . '">';
-        $html .= '</a>';
-    } else {
-        $html .= '<img src="' . $src[0] . '" alt="' . esc_html($alt) . '" class="align-' . $align
-            . ' figure-img img-fluid rounded' . '" width="' . $src[1] . '" height="' . $src[2] . '">';
-    }
+	if ($url) {
+		$html = '<a href="' . esc_url($url) . '">';
+		$html .= '<img src="' . $src[0] . '" alt="' . esc_html($alt) . '" class="align-' . $align
+			. ' figure-img img-fluid' . '" width="' . $src[1] . '" height="' . $src[2] . '">';
+		$html .= '</a>';
+	} else {
+		$html .= '<img src="' . $src[0] . '" alt="' . esc_html($alt) . '" class="align-' . $align
+			. ' figure-img img-fluid rounded' . '" width="' . $src[1] . '" height="' . $src[2] . '">';
+	}
 
-    if ($caption) {
-        $html .= '<figcaption class="figure-caption">' . esc_html($caption) . '</figcaption>';
-    }
+	if ($caption) {
+		$html .= '<figcaption class="figure-caption">' . esc_html($caption) . '</figcaption>';
+	}
 
-    $html .= '</figure>';
+	$html .= '</figure>';
 
-    return $html;
+	return $html;
 }
 
 add_filter('image_send_to_editor', 'updateImageCaption', 10, 8);
@@ -580,24 +580,28 @@ add_filter('image_send_to_editor', 'updateImageCaption', 10, 8);
  */
 function excludeLatestPostsInCategoryPage($query)
 {
-    if (is_admin()) {
-        return;
-    }
+	if (is_admin()) {
+		return;
+	}
 
-    // For category pages only
-    if ($query->is_category() && !$query->is_category('briefs') && $query->is_main_query()) {
-        $category = get_queried_object();
-        $offset   = $category->slug == 'opinion' || verifyColumnist($category->name) ? 3 : 5;
-        $ppp      = get_option('posts_per_page');
+	if ($query->is_category('briefs') || $query->is_category('offers')) {
+		return;
+	}
 
-        if ($query->is_paged) {
-            $pageOffset = $offset + ($query->query_vars['paged'] - 1) * $ppp;
+	// For category pages only
+	if ($query->is_category() && $query->is_main_query()) {
+		$category = get_queried_object();
+		$offset   = $category->slug == 'opinion' || verifyColumnist($category->name) ? 3 : 5;
+		$ppp      = get_option('posts_per_page');
 
-            $query->set('offset', $pageOffset);
-        } else {
-            $query->set('offset', $offset);
-        }
-    }
+		if ($query->is_paged) {
+			$pageOffset = $offset + ($query->query_vars['paged'] - 1) * $ppp;
+
+			$query->set('offset', $pageOffset);
+		} else {
+			$query->set('offset', $offset);
+		}
+	}
 }
 
 add_action('pre_get_posts', 'excludeLatestPostsInCategoryPage');
@@ -612,45 +616,49 @@ add_action('pre_get_posts', 'excludeLatestPostsInCategoryPage');
  */
 function adjustOffsetForPaginationInCategoryPage($found_posts, $query)
 {
-    if (is_admin()) {
-        return $found_posts;
-    }
+	if (is_admin()) {
+		return $found_posts;
+	}
 
-    if ($query->is_category() && !$query->is_category('briefs') && $query->is_main_query()) {
-        $category = get_queried_object();
-        $offset   = $category->slug == 'opinion' || verifyColumnist($category->name) ? 3 : 5;
+	if ($query->is_category('briefs') || $query->is_category('offers')) {
+		return $found_posts;
+	}
 
-        return $found_posts - $offset;
-    }
+	if ($query->is_category() && $query->is_main_query()) {
+		$category = get_queried_object();
+		$offset   = $category->slug == 'opinion' || verifyColumnist($category->name) ? 3 : 5;
 
-    return $found_posts;
+		return $found_posts - $offset;
+	}
+
+	return $found_posts;
 }
 
 add_filter('found_posts', 'adjustOffsetForPaginationInCategoryPage', 1, 2);
 
 function loadMorePostsAjaxHandler()
 {
-    $args          = json_decode(stripslashes($_POST['query']), true);
-    $args['paged'] = $_POST['page'];
-    $category      = $_POST['category'];
+	$args          = json_decode(stripslashes($_POST['query']), true);
+	$args['paged'] = $_POST['page'];
+	$category      = $_POST['category'];
 
-    if ($category != 'Briefs') {
-        $columnist      = get_queried_object();
-        $offset         = $columnist instanceof WP_Term && verifyColumnist($columnist->name) ? 3 : 5;
-        $args['offset'] = $offset + ($_POST['page'] - 1) * get_option('posts_per_page');
-    }
+	if ($category != 'Briefs') {
+		$columnist      = get_queried_object();
+		$offset         = $columnist instanceof WP_Term && verifyColumnist($columnist->name) ? 3 : 5;
+		$args['offset'] = $offset + ($_POST['page'] - 1) * get_option('posts_per_page');
+	}
 
-    query_posts($args);
+	query_posts($args);
 
-    if (have_posts()) {
-        if ($category != 'Brief') {
-            get_template_part('template-parts/content/category/more-stories');
-        } else {
-            get_template_part('template-parts/content/category/brief-more-stories');
-        }
-    }
+	if (have_posts()) {
+		if ($category != 'Brief') {
+			get_template_part('template-parts/content/category/more-stories');
+		} else {
+			get_template_part('template-parts/content/category/brief-more-stories');
+		}
+	}
 
-    wp_die();
+	wp_die();
 }
 
 add_action('wp_ajax_load_more_posts', 'loadMorePostsAjaxHandler');
@@ -658,19 +666,19 @@ add_action('wp_ajax_nopriv_load_more_posts', 'loadMorePostsAjaxHandler');
 
 function loadMorePostsAjaxHandlerOnSearch()
 {
-    $args          = json_decode(stripslashes($_POST['query']), true);
-    $args['paged'] = $_POST['page'];
-    $query         = new WP_Query($args);
+	$args          = json_decode(stripslashes($_POST['query']), true);
+	$args['paged'] = $_POST['page'];
+	$query         = new WP_Query($args);
 
-    if ($query->have_posts()) {
-        ?>
+	if ($query->have_posts()) {
+		?>
         <?php while ($query->have_posts()) : $query->the_post(); ?>
             <div class="card the-story mb-4">
                 <?php if (has_post_thumbnail()) : ?>
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <?php the_post_thumbnail('wide', [
-                                'class' => 'card-img img-fluid h-100'
+                            	'class' => 'card-img img-fluid h-100'
                             ]); ?>
                         </div>
 
@@ -700,10 +708,10 @@ function loadMorePostsAjaxHandlerOnSearch()
             </div>
         <?php endwhile; ?>
     <?php
-        wp_reset_postdata();
-    }
+		wp_reset_postdata();
+	}
 
-    wp_die();
+	wp_die();
 }
 
 add_action('wp_ajax_load_more_posts_search', 'loadMorePostsAjaxHandlerOnSearch');
@@ -711,10 +719,10 @@ add_action('wp_ajax_nopriv_load_more_posts_search', 'loadMorePostsAjaxHandlerOnS
 
 function loadMoreScript()
 {
-    if (is_category()) {
-        global $wp_query;
+	if (is_category()) {
+		global $wp_query;
 
-        $queryVars = json_encode($wp_query->query_vars); ?>
+		$queryVars = json_encode($wp_query->query_vars); ?>
         <script async type="text/javascript">
             jQuery(document).ready(function($) {
                 var page = 2,
@@ -759,7 +767,7 @@ function loadMoreScript()
             });
         </script>
     <?php
-    }
+	}
 }
 
 add_action('wp_footer', 'loadMoreScript');
@@ -769,50 +777,50 @@ add_action('wp_footer', 'loadMoreScript');
  */
 function contactFormAjaxCall()
 {
-    check_ajax_referer('__contact_form_ajax', 'security');
+	check_ajax_referer('__contact_form_ajax', 'security');
 
-    $post     = $_POST;
-    $data     = [];
-    $errors   = [];
-    $response = [];
+	$post     = $_POST;
+	$data     = [];
+	$errors   = [];
+	$response = [];
 
-    // Validate the all inputs
-    foreach ($post as $field => $value) {
-        if (empty($value)) {
-            $errors[$field] = __('Please fill out all the fields.');
-        } else {
-            if ($field == 'email') {
-                $email = filter_var($value, FILTER_VALIDATE_EMAIL);
+	// Validate the all inputs
+	foreach ($post as $field => $value) {
+		if (empty($value)) {
+			$errors[$field] = __('Please fill out all the fields.');
+		} else {
+			if ($field == 'email') {
+				$email = filter_var($value, FILTER_VALIDATE_EMAIL);
 
-                if (!$email) {
-                    $errors[$field] = __('Please provide a valid email address.');
-                } else {
-                    $data[$field] = $email;
-                }
-            } else {
-                $data[$field] = sanitize_text_field($value);
-            }
-        }
-    }
+				if (!$email) {
+					$errors[$field] = __('Please provide a valid email address.');
+				} else {
+					$data[$field] = $email;
+				}
+			} else {
+				$data[$field] = sanitize_text_field($value);
+			}
+		}
+	}
 
-    if (!empty($errors)) {
-        $response['success'] = false;
-        $response['message'] = $errors;
-    } else {
-        $to      = 'info@thedohaglobe.com';
-        $body    = "Name: {$data['sender']} \n\nEmail: {$data['email']} \n\nSubject: {$data['subject']} \n\nMessage:\n{$data['message']}";
-        $headers = 'From: ' . get_bloginfo('name') . ' <' . $to . '>' . "\r\n" . 'Reply-To: ' . $data['email'];
+	if (!empty($errors)) {
+		$response['success'] = false;
+		$response['message'] = $errors;
+	} else {
+		$to      = 'info@thedohaglobe.com';
+		$body    = "Name: {$data['sender']} \n\nEmail: {$data['email']} \n\nSubject: {$data['subject']} \n\nMessage:\n{$data['message']}";
+		$headers = 'From: ' . get_bloginfo('name') . ' <' . $to . '>' . "\r\n" . 'Reply-To: ' . $data['email'];
 
-        if (wp_mail($to, $data['subject'], $body, $headers)) {
-            $response['message'] = 'Thank you for contacting us, our representative will respond you shortly.';
-            $response['success'] = true;
-        } else {
-            $response['message'] = 'Apologies, we could not able to send your inquiry at the moment. Please try again.';
-            $response['success'] = false;
-        }
-    }
+		if (wp_mail($to, $data['subject'], $body, $headers)) {
+			$response['message'] = 'Thank you for contacting us, our representative will respond you shortly.';
+			$response['success'] = true;
+		} else {
+			$response['message'] = 'Apologies, we could not able to send your inquiry at the moment. Please try again.';
+			$response['success'] = false;
+		}
+	}
 
-    wp_send_json($response);
+	wp_send_json($response);
 }
 
 add_action('wp_ajax_contact_form_ajax_call', 'contactFormAjaxCall');
@@ -823,7 +831,7 @@ add_action('wp_ajax_nopriv_contact_form_ajax_call', 'contactFormAjaxCall');
  */
 function footerScript()
 {
-    $contactNonce = wp_create_nonce('__contact_form_ajax'); ?>
+	$contactNonce = wp_create_nonce('__contact_form_ajax'); ?>
     <script type="text/javascript">
         (function() {
             var clockEle = document.getElementById('clock');
@@ -850,6 +858,7 @@ function footerScript()
 
                 $('#navbar').toggleClass('fixed-top', (scroll >= 200));
                 $('.trending-widget').toggleClass('sticky-top', (scroll >= 300));
+                $('.offers-widget').toggleClass('sticky-top', (scroll >= 300));
             });
 
             <?php if (is_page('contact-us')) : ?>
@@ -959,32 +968,32 @@ add_action('wp_footer', 'footerScript');
  */
 function subCategoryTemplateHierarchy()
 {
-    $category  = get_queried_object();
-    $templates = [];
+	$category  = get_queried_object();
+	$templates = [];
 
-    if (isset($category->slug)) {
-        $slugDecoded = urldecode($category->slug);
+	if (isset($category->slug)) {
+		$slugDecoded = urldecode($category->slug);
 
-        if ($slugDecoded !== $category->slug) {
-            $templates[] = "category-{$slugDecoded}.php";
-        }
+		if ($slugDecoded !== $category->slug) {
+			$templates[] = "category-{$slugDecoded}.php";
+		}
 
-        $templates[] = "category-{$category->slug}.php";
-        $templates[] = "category-{$category->term_id}.php";
-    }
+		$templates[] = "category-{$category->slug}.php";
+		$templates[] = "category-{$category->term_id}.php";
+	}
 
-    if (!empty($category->parent)) {
-        $parent = get_category($category->parent);
+	if (!empty($category->parent)) {
+		$parent = get_category($category->parent);
 
-        if ($parent) {
-            $templates[] = "category-{$parent->slug}.php";
-            $templates[] = "category-{$parent->term_id}.php";
-        }
-    }
+		if ($parent) {
+			$templates[] = "category-{$parent->slug}.php";
+			$templates[] = "category-{$parent->term_id}.php";
+		}
+	}
 
-    $templates[] = 'category.php';
+	$templates[] = 'category.php';
 
-    return locate_template($templates);
+	return locate_template($templates);
 }
 
 add_filter('category_template', 'subCategoryTemplateHierarchy');
@@ -994,7 +1003,7 @@ add_filter('category_template', 'subCategoryTemplateHierarchy');
  */
 function loginPageCssModification()
 {
-    echo '<link rel="stylesheet" type="text/css" href="' . get_theme_file_uri('/css/login.css') . '">';
+	echo '<link rel="stylesheet" type="text/css" href="' . get_theme_file_uri('/css/login.css') . '">';
 }
 
 add_action('login_head', 'loginPageCssModification');
@@ -1006,7 +1015,7 @@ add_action('login_head', 'loginPageCssModification');
  */
 function loginLogoUrl()
 {
-    return get_bloginfo('url');
+	return get_bloginfo('url');
 }
 
 add_filter('login_headerurl', 'loginLogoUrl');
@@ -1018,7 +1027,7 @@ add_filter('login_headerurl', 'loginLogoUrl');
  */
 function loginLogoUrlText()
 {
-    return get_bloginfo('name');
+	return get_bloginfo('name');
 }
 
 add_filter('login_headertext', 'loginLogoUrlText');
@@ -1032,12 +1041,12 @@ add_filter('login_headertext', 'loginLogoUrlText');
  */
 function fileRenameOnUpload($filename)
 {
-    $info           = pathinfo($filename);
-    $ext            = empty($info['extension']) ? '' : '.' . $info['extension'];
-    $chars          = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $generatedChars = substr(str_shuffle($chars), 0, 12);
+	$info           = pathinfo($filename);
+	$ext            = empty($info['extension']) ? '' : '.' . $info['extension'];
+	$chars          = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	$generatedChars = substr(str_shuffle($chars), 0, 12);
 
-    return $generatedChars . '_' . time() . $ext;
+	return $generatedChars . '_' . time() . $ext;
 }
 
 add_filter('sanitize_file_name', 'fileRenameOnUpload', 10);
@@ -1051,15 +1060,15 @@ add_filter('sanitize_file_name', 'fileRenameOnUpload', 10);
  */
 function isPostInBrief($post_ID = false)
 {
-    $categories = get_the_category($post_ID);
+	$categories = get_the_category($post_ID);
 
-    foreach ($categories as $category) {
-        if ($category->slug == 'briefs') {
-            return true;
-        }
-    }
+	foreach ($categories as $category) {
+		if ($category->slug == 'briefs') {
+			return true;
+		}
+	}
 
-    return false;
+	return false;
 }
 
 /**
@@ -1072,7 +1081,7 @@ function isPostInBrief($post_ID = false)
  */
 function doctypeOpenGraph($output)
 {
-    return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
+	return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
 }
 
 //add_filter( 'language_attributes' , 'doctypeOpenGraph' );
@@ -1082,28 +1091,28 @@ function doctypeOpenGraph($output)
  */
 function addOpenGraphTags()
 {
-    if (is_single()) {
-        $columnist = getTheColumnist();
+	if (is_single()) {
+		$columnist = getTheColumnist();
 
-        if ($columnist !== null) {
-            $imgSrc    = getTheColumnistPictureUrl($columnist);
-            $imgAttr   = getimagesize($imgSrc);
-            $imgWidth  = $imgAttr[0];
-            $imgHeight = $imgAttr[1];
-        } else {
-            if (has_post_thumbnail()) {
-                $image     = wp_get_attachment_image_src(get_post_thumbnail_id(), 'square');
-                $imgSrc    = $image[0];
-                $imgWidth  = $image[1];
-                $imgHeight = $image[2];
-            } else {
-                $imgSrc    = get_stylesheet_directory_uri() . '/img/open_graph_default.jpg';
-                $imgWidth  = '300';
-                $imgHeight = '300';
-            }
-        }
+		if ($columnist !== null) {
+			$imgSrc    = getTheColumnistPictureUrl($columnist);
+			$imgAttr   = getimagesize($imgSrc);
+			$imgWidth  = $imgAttr[0];
+			$imgHeight = $imgAttr[1];
+		} else {
+			if (has_post_thumbnail()) {
+				$image     = wp_get_attachment_image_src(get_post_thumbnail_id(), 'square');
+				$imgSrc    = $image[0];
+				$imgWidth  = $image[1];
+				$imgHeight = $image[2];
+			} else {
+				$imgSrc    = get_stylesheet_directory_uri() . '/img/open_graph_default.jpg';
+				$imgWidth  = '300';
+				$imgHeight = '300';
+			}
+		}
 
-        $imgType = exif_imagetype($imgSrc); ?>
+		$imgType = exif_imagetype($imgSrc); ?>
 
         <!-- Essential meta tags -->
         <meta property="og:title" content="<?php the_title('', ' - ' . get_bloginfo('name')); ?>">
@@ -1118,9 +1127,9 @@ function addOpenGraphTags()
         <meta property="og:image:height" content="<?php echo $imgHeight; ?>">
         <meta property="twitter:card" content="summary_large_image">
 <?php
-    } else {
-        return;
-    }
+	} else {
+		return;
+	}
 }
 
 // add_action('wp_head', 'addOpenGraphTags');

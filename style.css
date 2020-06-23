@@ -15,7 +15,18 @@ body {
     font-family: 'Noto Serif', serif;
     font-weight: 400;
 }
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #202020;
     font-weight: 700;
     line-height: 1.2;
@@ -27,7 +38,7 @@ a,
 a:hover,
 .btn-link:hover {
     color: #202020;
-    opacity: .8;
+    opacity: 0.8;
     text-decoration: none;
 }
 .figure-caption {
@@ -66,12 +77,12 @@ a:hover,
     color: #808285;
 }
 .navbar-nav.administrative-links a.nav-link {
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .fixed-top .administrative-links a.nav-link {
-    padding-left: .25rem;
-    padding-right: .25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
 }
 .logo {
     font-size: 3rem;
@@ -93,10 +104,10 @@ p.description {
     border: none !important;
 }
 .navbar.fixed-top {
-    padding-top: .25rem;
-    padding-bottom: .25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
     margin-top: 0 !important;
-    transition: all .025s ease-in;
+    transition: all 0.025s ease-in;
     border-bottom: 1px solid #202020 !important;
 }
 .navbar.fixed-top .navbar-brand {
@@ -116,6 +127,8 @@ p.description {
 /*    padding-left: 0;*/
 /*}*/
 .primary-nav .active .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
     color: #fff !important;
     background-color: #202020;
 }
@@ -137,7 +150,7 @@ p.description {
     color: #202020;
 }
 .secondary-nav > .nav-item:not(:first-child) > .nav-link {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 .secondary-nav > .nav-item > .nav-link > i {
     line-height: 31px;
@@ -145,7 +158,7 @@ p.description {
 @media (max-width: 991.98px) {
     .datetime {
         text-align: center;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
 }
 @media (min-width: 992px) {
@@ -168,13 +181,13 @@ p.description {
     color: #202020;
 }
 figure.story-image {
-    padding: .5rem;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    padding: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 figure.story-image figcaption {
     color: #212529;
-    padding-top: .5rem;
-    font-size: .85rem;
+    padding-top: 0.5rem;
+    font-size: 0.85rem;
     font-style: italic;
     text-align: center;
 }
@@ -186,14 +199,11 @@ figure.story-image figcaption {
     padding-left: 1.5rem;
 }
 .card-text.story-info {
-    font-size: .85rem;
+    font-size: 0.85rem;
     text-align: right;
 }
 
 /* Sections */
-.section {
-
-}
 
 /* Section - Headlines */
 .quote-story .story-image img {
@@ -223,8 +233,8 @@ figure.story-image figcaption {
     display: block;
     width: 100%;
     height: 100%;
-    background: linear-gradient(transparent,rgba(0,0,0,1.2));
-    background: linear-gradient(to bottom,rgba(0,0,0,0),#000000);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1.2));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
 }
 .main-lead .main-lead-story.d-lg-block .story-head {
     position: absolute;
@@ -237,7 +247,7 @@ figure.story-image figcaption {
 .main-lead .main-lead-story .story-title {
     font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 .main-lead .main-lead-story.d-lg-block .story-title > a {
     color: #fff;
@@ -250,7 +260,7 @@ figure.story-image figcaption {
 }
 .other-leads .the-story:not(:last-child) {
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(0,0,0,.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .editor-in-chief {
     background-color: #58595b;
@@ -259,7 +269,7 @@ figure.story-image figcaption {
     border: 2px solid #fff;
 }
 .editor-in-chief .story-title > a,
-.editor-in-chief .columnist-name  {
+.editor-in-chief .columnist-name {
     color: #fff !important;
 }
 .editor-in-chief .chief-name,
@@ -289,7 +299,7 @@ figure.story-image figcaption {
     }
     .other-leads {
         margin-top: 1rem;
-        border-top: 1px solid rgba(0,0,0,.2);
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
         border-right: none;
     }
 }
@@ -307,7 +317,7 @@ figure.story-image figcaption {
 .brief > .the-story {
     background-color: transparent;
     border-top: 1px solid #fff;
-    padding: .75rem 0;
+    padding: 0.75rem 0;
     color: #fff;
     font-weight: 700;
 }
@@ -406,38 +416,42 @@ a.columnist-name {
 .section-category-listing .card-img-top {
     border-radius: 0;
 }
-.trending-news:not(.trending-widget) {
+.trending-news:not(.trending-widget),
+.offers:not(.offers-widget) {
     border: 2px solid #202020;
 }
-.trending-news .section-title {
-    color: #202020;
+.trending-news .section-title,
+.offers .section-title > a {
+    color: #d2972a;
 }
-.trending-news .the-story {
+.trending-news .the-story,
+.offers .the-story {
     border-top: 1px solid #212529;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
 }
-.trending-news .the-story .story-title {
+.trending-news .the-story .story-title,
+.offers .the-story .story-title {
     font-weight: 700;
 }
 .trending-news .the-story .number {
     font-size: 2rem;
     color: #caccce;
 }
-.trending-widget.sticky-top {
+.trending-widget.sticky-top,
+.offers-widget.sticky-top {
     top: 60px;
-}
-.trending-news .section-title {
-    color: #d2972a;
 }
 @media (min-width: 992px) {
     .section-category-listing .card.the-story {
         height: 286px;
         overflow: hidden;
     }
-    .trending-news:not(.trending-widget) {
+    .trending-news:not(.trending-widget),
+    .offers:not(.offers-widget) {
         border-left: 0;
     }
-    .trending-news .the-story {
+    .trending-news .the-story,
+    .offers .the-story {
         padding: 1rem 0;
     }
 }
@@ -481,14 +495,13 @@ a.columnist-name {
         width: 75%;
         margin: 0 auto;
     }
-    .page-section .page-header {
+    /* .page-section .page-header {
         width: 80%;
-    }
+    } */
 }
 
 /* Category Page */
 .category-page-section {
-
 }
 .category-page-section .page-header,
 .columnist-page-section .page-header {
@@ -532,7 +545,7 @@ a.columnist-name {
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("img/footer-bg.jpg");
+    background-image: url('img/footer-bg.jpg');
 }
 .home > .main-footer {
     margin-top: 3rem;
@@ -554,7 +567,7 @@ a.columnist-name {
     display: block;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0, 0, 0, 0.65);
 }
 .footer-top .secondary-nav {
     height: 47px;

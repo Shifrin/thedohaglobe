@@ -37,7 +37,8 @@
                             </div>
 
                             <div class="col-md-4">
-                                <?php get_template_part( 'template-parts/content/trending-widget' ); ?>
+                                <?php //get_template_part( 'template-parts/content/trending-widget' ); ?>
+                                <?php get_template_part( 'template-parts/content/offers-widget' ); ?>
                             </div>
                         </div>
                     <?php endwhile; ?>

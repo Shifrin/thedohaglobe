@@ -75,7 +75,8 @@
 
                 <!-- Trending News Section -->
                 <div class="col-lg-3">
-                    <?php get_template_part('template-parts/content/home/trending-news'); ?>
+                    <?php // get_template_part('template-parts/content/home/trending-news');?>
+                    <?php get_template_part('template-parts/content/home/offers'); ?>
                 </div>
             </div>
         </div>
