@@ -1,6 +1,6 @@
 <?php
 /**
- * The single post page template file.
+ * The single post page template file for videos category.
  */
 ?>
 
@@ -15,6 +15,7 @@
 					$columnistPicture  = getTheColumnistPictureUrl($columnist);
 					$author            = getPostAuthorName();
 					$authorDisplayName = isEditorInChief($author) ? $author . ', Editor-In-Chief' : $author;
+					$category = get_the_category();
 					?>
 
                     <?php theBreadcrumb(); ?>
@@ -54,27 +55,30 @@
                         </div>
                     </header>
 
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <div class="page-image">
-                                    <figure class="figure">
-                                        <?php the_post_thumbnail('full', [
-                                        	'class' => 'figure-img img-fluid rounded']); ?>
-                                        <figcaption class="figure-caption">
-                                            <?php the_post_thumbnail_caption(); ?>
-                                        </figcaption>
-                                    </figure>
-                                </div>
-                            <?php endif; ?>
+                    <div class="page-content">
+                        <?php if ($category[0]->slug !== 'videos') : ?>
+                            <?php $images = get_attached_media('image'); ?>
 
-                            <div class="page-content">
+                            <div class="row row-cols-1 row-cols-md-3 post-gallery">
+                                <?php foreach ($images as $image) : ?>
+                                    <?php
+                                    $fullSrc = wp_get_attachment_image_src($image->ID, 'full');
+                                    $wideSrc = wp_get_attachment_image_src($image->ID, 'wide');
+                                    ?>
+
+                                    <div class="col mb-4">
+                                        <a href="<?php echo $fullSrc[0]; ?>" class="card">
+                                            <img src="<?php echo $wideSrc[0]; ?>" class="d-block w-100" alt="<?php the_title(); ?>">
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
                                 <?php the_content(); ?>
                             </div>
-                        </div>
-
-                        <div class="d-none d-lg-block col-lg-4">
-                            <?php get_template_part('template-parts/content/trending-widget'); ?>
                         </div>
                     </div>
                 <?php endwhile; ?>

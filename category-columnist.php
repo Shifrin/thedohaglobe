@@ -55,8 +55,7 @@ $columnistPictureUrl = getTheColumnistPictureUrl($columnist);
                         </div>
 
                         <div class="d-none d-lg-block col-lg-4">
-                            <?php //get_template_part( 'template-parts/content/trending-widget' );?>
-                            <?php get_template_part('template-parts/content/offers-widget'); ?>
+                            <?php get_template_part( 'template-parts/content/trending-widget' );?>
                         </div>
                     </div>
                 <?php endif; ?>

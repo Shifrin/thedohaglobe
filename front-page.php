@@ -75,8 +75,7 @@
 
                 <!-- Trending News Section -->
                 <div class="col-lg-3">
-                    <?php // get_template_part('template-parts/content/home/trending-news');?>
-                    <?php get_template_part('template-parts/content/home/offers'); ?>
+                    <?php get_template_part('template-parts/content/home/trending-news'); ?>
                 </div>
             </div>
         </div>
@@ -86,6 +85,28 @@
     <section class="section section-community mt-3 mt-lg-5">
         <div class="container-fluid">
             <?php get_template_part('template-parts/content/home/community-posts'); ?>
+        </div>
+    </section>
+
+    <!-- Video Posts -->
+    <section class="section section-videos mt-3 mt-lg-5">
+        <div class="container-fluid">
+            <?php get_template_part('template-parts/content/home/video-posts'); ?>
+        </div>
+    </section>
+
+    <!-- Pictures Posts -->
+    <section class="section section-infographics mt-3 mt-lg-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/picture-posts'); ?>
+                </div>
+
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/infographic-posts'); ?>
+                </div>
+            </div>
         </div>
     </section>
 

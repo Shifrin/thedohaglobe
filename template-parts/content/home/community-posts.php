@@ -41,6 +41,8 @@ $excludePosts = getExcludedPostsFromPlacements();
 
                     <?php $i++; ?>
                 <?php endwhile; ?>
+
+                <?php wp_reset_postdata(); ?>
             </div>
         <?php endif; ?>
     </div>

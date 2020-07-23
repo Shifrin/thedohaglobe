@@ -9,7 +9,7 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo-fade.png?' . filemtime(
 
         </main><!-- .main-content -->
 
-        <footer class="main-footer text-white" role="contentinfo">
+        <footer class="main-footer text-white">
             <div class="footer-top py-3">
                 <div class="container-fluid">
                     <div class="row align-self-center">
@@ -49,7 +49,7 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo-fade.png?' . filemtime(
                         ?>
                     </div>
 
-                    <div class="site-info text-center">
+                    <div class="site-info text-center" role="contentinfo">
                         <?php printf( __( '&copy; %1$s %2$s', 'bt' ), date('Y'),
                             get_bloginfo('name') . ', All Rights Reserved' ); ?>
                     </div>
