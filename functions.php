@@ -1178,10 +1178,11 @@ function isMediaCategory($slug = null)
     }
 
     $mediaCategories = [
-        'briefs',
+//        'briefs',
         'videos',
         'pictures',
-        'infographics'
+        'infographics',
+        'cartoons',
     ];
 
     return in_array($slug, $mediaCategories);
@@ -1207,6 +1208,7 @@ function isInMediaCategory($post_ID = false)
         'infographics',
         'pictures',
         'videos',
+        'cartoons',
     ];
 
     if (!empty($categories)) {
