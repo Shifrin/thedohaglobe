@@ -405,6 +405,7 @@ figure.story-image figcaption {
 .section-videos .card .card-icon,
 .section-pictures .card .card-icon,
 .section-infographics .card .card-icon {
+    display: none;
     position: absolute;
     top: 0;
     left: 0;

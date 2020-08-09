@@ -1,9 +1,9 @@
 <?php
 /**
- * Template part to displaying pictures posts in the home page.
+ * Template part to displaying cartoons posts in the home page.
  */
 
-$categoryObj  = get_category_by_slug('pictures');
+$categoryObj  = get_category_by_slug('cartoons');
 $excludePosts = getExcludedPostsFromPlacements();
 ?>
 
@@ -17,7 +17,7 @@ $excludePosts = getExcludedPostsFromPlacements();
 
         <?php $posts = new WP_Query([
             'category_name'  => $categoryObj->slug,
-            'posts_per_page' => 4,
+            'posts_per_page' => 2,
             'post__not_in'   => $excludePosts
         ]); ?>
 
@@ -32,7 +32,7 @@ $excludePosts = getExcludedPostsFromPlacements();
                             ]); ?>
 
                             <div class="card-body">
-                                <img src="<?php echo get_template_directory_uri() . '/img/picture.svg'; ?>"
+                                <img src="<?php echo get_template_directory_uri() . '/img/infographic.svg'; ?>"
                                      alt="Picture Post" class="card-icon shadow" width="50">
 
                                 <h3 class="card-title story-title">
