@@ -9,7 +9,7 @@ $excludePosts = getExcludedPostsFromPlacements();
 ?>
 
 <?php if ($categoryObj instanceof WP_Term) : ?>
-    <div class="community-posts">
+    <div class="media-posts">
         <h2 class="section-title">
             <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
                 <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
@@ -22,7 +22,7 @@ $excludePosts = getExcludedPostsFromPlacements();
             'post__not_in'   => $excludePosts
         ]); ?>
 
-        <?php if ($posts->have_posts()) : ?>
+        <?php if (!$posts->have_posts()) : ?>
             <div class="row mx-n2">
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
                     <div class="col-sm-6 col-lg px-2">
@@ -53,6 +53,10 @@ $excludePosts = getExcludedPostsFromPlacements();
 
                 <?php wp_reset_postdata(); ?>
             </div>
+        <?php else: ?>
+            <p class="lead text-center my-5">
+                This section will be updated soon.
+            </p>
         <?php endif; ?>
     </div>
 <?php endif; ?>

@@ -42,6 +42,10 @@ $i = 1;
 
                     <?php wp_reset_postdata(); ?>
                 </div>
+            <?php else: ?>
+                <p class="lead text-center my-5">
+                    This section will be updated soon.
+                </p>
             <?php endif; ?>
 
             <?php thePagination(); ?>

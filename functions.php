@@ -64,11 +64,9 @@ add_action('after_setup_theme', 'themeSetup');
  */
 function themeEnqueueStyles()
 {
-//    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
     wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
-    //wp_enqueue_style( 'font-sans', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' );
-    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700');
+    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
 
     if (isInMediaCategory()) {
         wp_enqueue_style('lightbox', get_template_directory_uri() . '/css/lightbox.min.css');

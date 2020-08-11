@@ -11,7 +11,6 @@ Description: The Doha Globe theme is based on Bootstrap 4 Framework
 
 /* General */
 body {
-    /*font-family: 'Source Sans Pro', sans-serif;*/
     font-family: 'Noto Serif', serif;
     font-weight: 400;
 }
@@ -542,8 +541,9 @@ a.columnist-name {
     background-color: #202020;
 }
 
-/* Community Posts */
-.community-posts > .section-title {
+/* Community and Media */
+.community-posts > .section-title,
+.media-posts > .section-title {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid #202020;

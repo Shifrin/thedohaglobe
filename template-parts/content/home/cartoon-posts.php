@@ -8,7 +8,7 @@ $excludePosts = getExcludedPostsFromPlacements();
 ?>
 
 <?php if ($categoryObj instanceof WP_Term) : ?>
-    <div class="community-posts">
+    <div class="media-posts">
         <h2 class="section-title">
             <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
                 <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
