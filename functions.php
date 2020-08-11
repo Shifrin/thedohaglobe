@@ -83,11 +83,7 @@ add_action('wp_enqueue_scripts', 'themeEnqueueStyles');
  */
 function themeEnqueueScripts()
 {
-//    wp_enqueue_script(
-//        'bootstrap',
-//        get_template_directory_uri() . '/js/bootstrap.bundle.min.js',
-//        ['jquery']
-//    );
+    wp_enqueue_script('jquery');
     wp_enqueue_script(
         'bootstrap',
         'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js',
@@ -1177,10 +1173,10 @@ function isMediaCategory($slug = null)
 
     $mediaCategories = [
 //        'briefs',
-        'videos',
-        'pictures',
-        'infographics',
-        'cartoons',
+'videos',
+'pictures',
+'infographics',
+'cartoons',
     ];
 
     return in_array($slug, $mediaCategories);
