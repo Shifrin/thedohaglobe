@@ -77,11 +77,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
+                    <?php the_content(); ?>
                 </div>
             <?php endwhile; ?>
         </div>
