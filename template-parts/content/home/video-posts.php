@@ -22,7 +22,7 @@ $excludePosts = getExcludedPostsFromPlacements();
             'post__not_in'   => $excludePosts
         ]); ?>
 
-        <?php if (!$posts->have_posts()) : ?>
+        <?php if ($posts->have_posts()) : ?>
             <div class="row mx-n2">
                 <?php while ($posts->have_posts()) : $posts->the_post(); ?>
                     <div class="col-sm-6 col-lg px-2">
