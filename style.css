@@ -577,7 +577,7 @@ a.columnist-name {
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('img/footer-bg.jpg');
+    background-image: url('/wp-content/themes/thedohaglobe/img/footer-bg.jpg');
 }
 .home > .main-footer {
     margin-top: 3rem;
