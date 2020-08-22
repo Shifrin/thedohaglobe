@@ -1,1 +1,1 @@
-# TheDohaGlobe
+# TheDohaGlobe WordPress template
