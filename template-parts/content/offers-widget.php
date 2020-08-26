@@ -21,7 +21,7 @@ $categoryObj = get_category_by_slug('offers');
                     <div class="row no-gutters align-items-center">
                         <div class="col-4 col-sm-2 col-lg-4">
                             <div class="story-image">
-                                <?php the_post_thumbnail('square', [
+                                <?php the_post_thumbnail('medium', [
                                 	'class' => 'img-fluid',
                                 	'alt'   => get_the_title()
                                 ]); ?>

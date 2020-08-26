@@ -3,7 +3,7 @@
  * Template part for displaying posts by categories of local, international & business
  */
 $categories   = ['local', 'international', 'business'];
-$excludePosts = getExcludedPostsFromPlacements();
+$excludePosts = getPlacementPostIds();
 ?>
 
 <div class="category-listing p-3 h-100">
@@ -32,7 +32,7 @@ $excludePosts = getExcludedPostsFromPlacements();
                         <?php while ($posts->have_posts()) : $posts->the_post(); ?>
                             <?php if ($i == 1) : ?>
                                 <a href="<?php the_permalink(); ?>" class="card the-story">
-                                    <?php the_post_thumbnail('wide', [
+                                    <?php the_post_thumbnail('featured', [
                                     	'class' => 'card-img-top img-fluid', 'alt' => get_the_title()]); ?>
 
                                     <div class="card-body">

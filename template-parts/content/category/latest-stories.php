@@ -15,7 +15,7 @@ $query = new WP_Query( array( 'cat' => get_queried_object_id(), 'posts_per_page'
                 <?php if ( $i <= 1 ) : ?>
                     <div class="col-lg-7 px-2">
                         <div class="card the-story h-100">
-                            <?php the_post_thumbnail( 'wide', array(
+                            <?php the_post_thumbnail( 'featured', array(
                                 'class' => 'card-img-top img-fluid', 'alt' => get_the_title() ) ); ?>
 
                             <div class="card-body">
@@ -32,7 +32,7 @@ $query = new WP_Query( array( 'cat' => get_queried_object_id(), 'posts_per_page'
                     <?php echo $i == 2 ? '<div class="col-lg-5 px-2 mt-3 mt-lg-0"><div class="card-deck mx-n2">' : ''; ?>
 
                     <div class="card the-story mx-2">
-                        <?php the_post_thumbnail( 'wide', array(
+                        <?php the_post_thumbnail( 'featured', array(
                             'class' => 'card-img-top img-fluid', 'alt' => get_the_title() ) ); ?>
 
                         <div class="card-body">

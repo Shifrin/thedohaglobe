@@ -22,7 +22,7 @@
                                 <?php if (has_post_thumbnail()) : ?>
                                     <div class="page-image">
                                         <figure class="figure">
-                                            <?php the_post_thumbnail('wide', [
+                                            <?php the_post_thumbnail('featured', [
                                             	'class' => 'figure-img img-fluid rounded']); ?>
                                             <figcaption class="figure-caption">
                                                 <?php the_post_thumbnail_caption(); ?>

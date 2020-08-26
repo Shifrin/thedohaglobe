@@ -2,228 +2,14 @@
 
 // Include custom navigation walker that supports Bootstrap 4 style
 require_once('classes/class-wp-bootstrap-navwalker.php');
-// Include custom class for the placement posts
-require_once('classes/PlacementPosts.php');
-// Include video auto thumbnail generator
-//require 'classes/VideoThumbnailGenerator.php';
-
-/**
- * Theme setup, adding some default configuration for this theme to support
- */
-function themeSetup()
-{
-    // Add default posts and comments RSS feed links to head.
-    add_theme_support('automatic-feed-links');
-
-    /*
-     * Let WordPress manage the document title.
-     */
-    add_theme_support('title-tag');
-
-    /*
-     * Enable support for Post Thumbnails on posts and pages.
-     */
-    add_theme_support('post-thumbnails');
-    add_image_size('featured', 1200, 600, true);
-    add_image_size('wide', 1000, 600, true);
-    add_image_size('square', 600, 600, true);
-
-    // This theme uses wp_nav_menu() in two locations.
-    register_nav_menus(
-        [
-            'primary'   => __('Primary Menu'),
-            'secondary' => __('Secondary Menu'),
-            'footer'    => __('Footer Menu'),
-        ]
-    );
-
-    /*
-     * Switch default core markup for search form, comment form, and comments
-     * to output valid HTML5.
-     */
-    add_theme_support(
-        'html5',
-        [
-            'search-form',
-            'comment-form',
-            'comment-list',
-            'gallery',
-            'caption',
-        ]
-    );
-
-    // add post type supports
-    add_theme_support('post-formats', ['video', 'audio']);
-}
-
-// Hooking up our 'themeSetup' function to 'after_setup_theme' hook
-add_action('after_setup_theme', 'themeSetup');
-
-/**
- * Adding theme required styles
- */
-function themeEnqueueStyles()
-{
-    wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
-    wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
-    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
-
-    if (isInMediaCategory()) {
-        wp_enqueue_style('lightbox', get_template_directory_uri() . '/css/lightbox.min.css');
-    }
-
-    wp_enqueue_style('core', get_stylesheet_uri() . '?' . filemtime(get_stylesheet_directory() .
-            '/style.css'));
-}
-
-add_action('wp_enqueue_scripts', 'themeEnqueueStyles');
-
-/**
- * Adding theme required scripts
- */
-function themeEnqueueScripts()
-{
-    wp_enqueue_script('jquery');
-    wp_enqueue_script(
-        'bootstrap',
-        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js',
-        ['jquery']
-    );
-
-    if (isInMediaCategory()) {
-        wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.min.js', ['jquery']);
-    }
-}
-
-add_action('wp_enqueue_scripts', 'themeEnqueueScripts');
-
-/**
- * Remove WordPress default image sizes to avoid too many thumbnails creation.
- *
- * @param $sizes array the default image sizes
- *
- * @return mixed
- */
-function removeDefaultImageSizes($sizes)
-{
-    unset($sizes['medium'], $sizes['large'], $sizes['medium_large']);
-
-    return $sizes;
-}
-
-add_filter('intermediate_image_sizes_advanced', 'removeDefaultImageSizes');
-
-/**
- * Add custom taxonomies
- *
- * Additional custom taxonomies can be defined here
- * http://codex.wordpress.org/Function_Reference/register_taxonomy
- */
-function addPlacementTaxonomy()
-{
-    register_taxonomy('placement', 'post', [
-        'public'             => false, // we make this private
-        'show_ui'            => true,
-        'show_in_rest'       => true,
-        'show_in_quick_edit' => true,
-        'show_admin_column'  => true,
-        // This array of options controls the labels displayed in the WordPress Admin UI
-        'labels'             => [
-            'name'              => _x('Placements', 'taxonomy general name'),
-            'singular_name'     => _x('Placement', 'taxonomy singular name'),
-            'search_items'      => __('Search Placements'),
-            'all_items'         => __('All Placements'),
-            'parent_item'       => __('Parent Placement'),
-            'parent_item_colon' => __('Parent Placement:'),
-            'edit_item'         => __('Edit Placement'),
-            'update_item'       => __('Update Placement'),
-            'add_new_item'      => __('Add New Placement'),
-            'new_item_name'     => __('New Placement Name'),
-            'menu_name'         => __('Placements'),
-        ],
-    ]);
-}
-
-add_action('init', 'addPlacementTaxonomy', 0);
-
-/**
- * Add placement custom taxonomy filter to the posts table in administration
- */
-function addPlacementTaxonomyFilter()
-{
-    global $typenow;
-
-    $postType = 'post';
-
-    if ($typenow == $postType) {
-        $selected = isset($_GET['placement']) ? $_GET['placement'] : 0;
-
-        if (!is_numeric($selected)) {
-            $term = get_term_by('slug', $_GET['placement'], 'placement');
-
-            if ($term) {
-                $selected = $term->term_id;
-            }
-        }
-
-        wp_dropdown_categories([
-            'show_option_all' => 'All Placements',
-            'orderby'         => 'name',
-            'name'            => 'placement',
-            'selected'        => $selected,
-            'taxonomy'        => 'placement',
-        ]);
-    }
-}
-
-add_action('restrict_manage_posts', 'addPlacementTaxonomyFilter');
-
-/**
- * Filter the posts based on custom taxonomy placement
- *
- * @param WP_Query $query
- */
-function filterPostsByPlacementTaxonomy($query)
-{
-    global $pagenow;
-
-    $queriedPostType  = isset($query->query_vars['post_type']) ? $query->query_vars['post_type'] : '';
-    $queriedGTaxonomy = isset($query->query_vars['placement']) ? $query->query_vars['placement'] : '';
-
-    if ($pagenow == 'edit.php' && $queriedPostType == 'post' && is_numeric($queriedGTaxonomy)) {
-        $term = get_term_by('id', $queriedGTaxonomy, 'placement');
-
-        if ($term) {
-            $query->query_vars['placement'] = $term->slug;
-        }
-    }
-}
-
-add_filter('parse_query', 'filterPostsByPlacementTaxonomy');
-
-/**
- * Limit the excerpt length.
- *
- * @return int
- */
-function customExcerptLength()
-{
-    return 25;
-}
-
-add_filter('excerpt_length', 'customExcerptLength', 999);
-
-/**
- * Add custom excerpt more string.
- *
- * @return string
- */
-function excerptMore()
-{
-    return '...';
-}
-
-add_filter('excerpt_more', 'excerptMore');
+// Theme setup functions and default overrides
+require_once('inc/theme_init.php');
+// Placement taxonomy related functions
+require_once('inc/placement_taxonomy.php');
+// Breadcrumbs
+require_once('inc/breadcrumbs.php');
+// Pagination
+require_once('inc/pagination.php');
 
 /**
  * Filter post categories to not showing the columnist names.
@@ -422,61 +208,8 @@ function trackPostViews()
     }
 }
 
-// To keep the accurate count, lets get rid of pre fetching
-// remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
 // Track the post view
 add_action('wp_head', 'trackPostViews');
-
-/**
- * Get the lead posts. It will try to get from the cache first, if not get directly and then cached it.
- *
- * @return array|mixed Array of found posts
- */
-function getLeadPosts()
-{
-    $posts = get_transient('placement_lead_posts');
-
-    if (!$posts) {
-        $obj   = new PlacementPosts();
-        $posts = $obj->setPlacement('Lead')->getPosts();
-    }
-
-    return $posts;
-}
-
-/**
- * Get brief posts from cache if not available try to get it directly
- *
- * @return array|mixed The brief posts
- */
-function getBriefPosts()
-{
-    $posts = get_transient('placement_brief_posts');
-
-    if (!$posts) {
-        $obj   = new PlacementPosts();
-        $posts = $obj->setPlacement('Brief')->getPosts();
-    }
-
-    return $posts;
-}
-
-/**
- * Get the lead posts. It will try to get from the cache first, if not get directly and then cached it.
- *
- * @return array|mixed Array of found posts
- */
-function getNewsSectionPosts()
-{
-    $posts = get_transient('placement_news_section_posts');
-
-    if (!$posts) {
-        $obj   = new PlacementPosts();
-        $posts = $obj->setPlacement('News Section')->getPosts();
-    }
-
-    return $posts;
-}
 
 /**
  * Get trending news based on views for up to last 3 days.
@@ -504,46 +237,6 @@ function getTrendingNews($number_of_posts)
         ],
     ]);
 }
-
-/**
- * Set the posts that have to be excluded from the category listing in homepage, so it won't duplicate or repeat.
- *
- * @param int $post_ID
- */
-function setExcludedPostsFromPlacements($post_ID)
-{
-    if (false === ($posts = get_transient('placement_exclude_posts'))) {
-        set_transient('placement_exclude_posts', [$post_ID], 12 * HOUR_IN_SECONDS);
-    } else {
-        $posts[] = $post_ID;
-
-        delete_transient('placement_exclude_posts');
-        set_transient('placement_exclude_posts', $posts, 12 * HOUR_IN_SECONDS);
-    }
-}
-
-/**
- * Get the posts that have been set as excluded.
- *
- * @return array|mixed
- */
-function getExcludedPostsFromPlacements()
-{
-    return (false === ($posts = get_transient('placement_exclude_posts'))) ? [] : $posts;
-}
-
-/**
- * Update 'placement_exclude_posts' cache.
- */
-add_action('save_post', function ($postID, $post) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-
-    if ($post->post_type == 'post') {
-        delete_transient('placement_exclude_posts');
-    }
-}, 10, 2);
 
 /**
  * Update the image markup according to our needs.
@@ -681,7 +374,7 @@ function loadMorePostsAjaxHandlerOnSearch()
                 <?php if (has_post_thumbnail()) : ?>
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <?php the_post_thumbnail('wide', [
+                            <?php the_post_thumbnail('featured', [
                                 'class' => 'card-img img-fluid h-100'
                             ]); ?>
                         </div>
@@ -1120,7 +813,7 @@ function addOpenGraphTags()
             $imgHeight = $imgAttr[1];
         } else {
             if (has_post_thumbnail()) {
-                $image     = wp_get_attachment_image_src(get_post_thumbnail_id(), 'square');
+                $image     = wp_get_attachment_image_src(get_post_thumbnail_id());
                 $imgSrc    = $image[0];
                 $imgWidth  = $image[1];
                 $imgHeight = $image[2];
@@ -1265,7 +958,3 @@ function modifyWpOEmbedOutput($html)
 }
 
 add_filter('embed_oembed_html', 'modifyWpOEmbedOutput', 99, 4);
-
-// Breadcrumbs & Pagination
-require get_template_directory() . '/inc/breadcrumbs.php';
-require get_template_directory() . '/inc/pagination.php';

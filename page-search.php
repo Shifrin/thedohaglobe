@@ -46,7 +46,7 @@ if ( !empty( $text ) || !empty( $filter ) ) {
                                     <?php if ( has_post_thumbnail() ) : ?>
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
-                                                <?php the_post_thumbnail( 'wide', array(
+                                                <?php the_post_thumbnail( 'featured', array(
                                                     'class' => 'card-img img-fluid h-100'
                                                 ) ); ?>
                                             </div>

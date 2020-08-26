@@ -4,7 +4,8 @@
  */
 $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
         get_stylesheet_directory() . '/img/logo.png');
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -62,15 +63,15 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
                     </div>
                 </div>
 
-                <div class="header-middle text-center">
+                <div class="header-middle my-2 text-center">
                     <a href="<?php echo esc_url(home_url()); ?>" class="d-inline-block logo mx-auto text-center">
-                        <img src="<?php echo esc_url($logoUrl) ?>" class="logo-image img-fluid">
+                        <img src="<?php echo esc_url($logoUrl) ?>" class="logo-image img-fluid" width="400">
                     </a>
                 </div>
             </div>
         </header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-white mt-lg-2" id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" id="navbar">
             <div class="container-fluid">
                 <a class="navbar-brand d-none" href="<?php echo esc_url(home_url()); ?>">
                     <img src="<?php echo esc_url($logoUrl); ?>" width="150" alt="<?php bloginfo('name'); ?>">

@@ -5,7 +5,7 @@
 
 $i = 1;
 $categoryObj = get_category_by_slug( 'community' );
-$excludePosts = getExcludedPostsFromPlacements();
+$excludePosts = getPlacementPostIds();
 ?>
 
 <?php if ( $categoryObj instanceof WP_Term ) : ?>
@@ -24,7 +24,7 @@ $excludePosts = getExcludedPostsFromPlacements();
                 <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
                     <div class="col-sm-6 col-lg px-2">
                         <a href="<?php the_permalink(); ?>" class="card text-center the-story h-100 rounded-0">
-                            <?php the_post_thumbnail( 'wide', array( 'class' => 'card-img-top img-fluid rounded-0',
+                            <?php the_post_thumbnail( 'featured', array( 'class' => 'card-img-top img-fluid rounded-0',
                                 'alt' => get_the_title() ) ); ?>
 
                             <div class="card-body">

@@ -19,7 +19,7 @@ $i = 1;
                     <?php while (have_posts()) : the_post(); ?>
                         <div class="col-lg-3">
                             <a href="<?php the_permalink(); ?>" class="card text-center the-story h-100 rounded-0">
-                                <?php the_post_thumbnail('wide', [
+                                <?php the_post_thumbnail('featured', [
                                     'class' => 'card-img-top img-fluid rounded-0',
                                     'alt'   => get_the_title()
                                 ]); ?>

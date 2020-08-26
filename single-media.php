@@ -56,7 +56,7 @@
                     </div>
                 </header>
 
-                <div class="page-content">
+                <div class="page-content text-center">
                     <?php if ($category[0]->slug == 'pictures') : ?>
                         <?php $images = get_attached_media('image'); ?>
 
@@ -64,7 +64,7 @@
                             <?php foreach ($images as $image) : ?>
                                 <?php
                                 $fullSrc = wp_get_attachment_image_src($image->ID, 'full');
-                                $wideSrc = wp_get_attachment_image_src($image->ID, 'wide');
+                                $wideSrc = wp_get_attachment_image_src($image->ID, 'featured');
                                 ?>
 
                                 <div class="col mb-4">

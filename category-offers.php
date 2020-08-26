@@ -19,7 +19,7 @@ $i = 1;
                         <?php while (have_posts()) : the_post(); ?>
                             <div class="col-lg-3">
                                 <div class="card the-story h-100">
-                                    <?php the_post_thumbnail('wide', [
+                                    <?php the_post_thumbnail('featured', [
                                     	'class' => 'card-img-top img-fluid',
                                     	'alt'   => get_the_title()
                                     ]); ?>
