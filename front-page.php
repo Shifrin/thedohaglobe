@@ -88,23 +88,31 @@
         </div>
     </section>
 
-    <!-- Video Posts -->
+    <!-- Video & Picture Posts -->
     <section class="section section-videos mt-3 mt-lg-5">
         <div class="container-fluid">
-            <?php get_template_part('template-parts/content/home/video-posts'); ?>
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/video-posts'); ?>
+                </div>
+
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/picture-posts'); ?>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Pictures Posts -->
+    <!-- Infographic & Cartoon Posts -->
     <section class="section section-infographics mt-3 mt-lg-5">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                    <?php get_template_part('template-parts/content/home/picture-posts'); ?>
+                    <?php get_template_part('template-parts/content/home/infographic-posts'); ?>
                 </div>
 
                 <div class="col-lg-6">
-                    <?php get_template_part('template-parts/content/home/infographic-posts'); ?>
+                    <?php get_template_part('template-parts/content/home/cartoon-posts'); ?>
                 </div>
             </div>
         </div>
