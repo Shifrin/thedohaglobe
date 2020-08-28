@@ -7,7 +7,11 @@ $posts = getLeadPosts();
 
 if (!empty($posts)) : ?>
     <div class="row">
-        <?php foreach ($posts as $post) : setup_postdata($post); ?>
+        <?php foreach ($posts as $post) : ?>
+            <?php
+            setPlacementPostIdForExclude($post->ID);
+            setup_postdata($post);
+            ?>
             <div class="col-12 col-md-6 col-lg-12">
                 <div class="the-story p-lg-3 py-3">
                     <div class="row no-gutters align-items-center">

@@ -93,13 +93,26 @@ add_filter('parse_query', function ($query) {
  */
 function getPlacementPosts()
 {
-    $posts = get_transient('__placement_posts');
-
-    if (!$posts) {
-        $posts = cachePlacementsPosts();
-    }
+//    $posts = get_transient('__placement_posts');
+//
+//    if (!$posts) {
+    $posts = cachePlacementsPosts();
+//    }
 
     return $posts;
+}
+
+/**
+ * Set placement post ID.
+ *
+ * @param integer $ID the post ID
+ */
+function setPlacementPostIdForExclude($ID)
+{
+    $ids   = empty(get_transient('__placement_post_ids')) ? [] : get_transient('__placement_post_ids');
+    $ids[] = $ID;
+
+    set_transient('__placement_post_ids', $ids);
 }
 
 /**
@@ -107,15 +120,9 @@ function getPlacementPosts()
  *
  * @return array
  */
-function getPlacementPostIds()
+function getPlacementPostIdForExclude()
 {
-    $ids = get_transient('__placement_post_ids');
-
-    if (!$ids) {
-        $ids = cachePlacementsPosts();
-    }
-
-    return $ids;
+    return get_transient('__placement_post_ids');
 }
 
 /**
@@ -123,14 +130,16 @@ function getPlacementPostIds()
  *
  * @return WP_Post|null
  */
-function getMainLeadPost()
+function getMainPost()
 {
     $posts = getPlacementPosts();
-    $lead = null;
+    $lead  = null;
 
-    if (isset($posts['lead']) && !empty($posts['lead'])) {
-        $lead = $posts['lead'][0];
+    if (isset($posts['main']) && !empty($posts['main'])) {
+        $lead = $posts['main'][0];
     }
+
+    setPlacementPostIdForExclude($lead->ID);
 
     return $lead;
 }
@@ -145,12 +154,19 @@ function getLeadPosts()
     $posts = getPlacementPosts();
     $leads = null;
 
-    if (isset($posts['lead']) && !empty($posts['lead'])) {
-        $leads = $posts['lead'];
-        unset($leads[0]);
+    foreach ($posts as $key => $array) {
+        if (strpos($key, 'lead') !== false) {
+            foreach ($array as $post) {
+                $leads[] = $post;
+            }
+        }
     }
 
-    return $leads;
+    usort($leads, function ($a, $b) {
+        return strtotime($b->post_date) - strtotime($a->post_date);
+    });
+
+    return array_slice($leads, 0, 3);
 }
 
 /**
@@ -160,14 +176,22 @@ function getLeadPosts()
  */
 function getNewsSectionPosts()
 {
-    $posts = getPlacementPosts();
+    $posts            = getPlacementPosts();
     $newsSectionPosts = null;
 
-    if (isset($posts['news-section']) && !empty($posts['news-section'])) {
-        $newsSectionPosts = $posts['news-section'];
+    foreach ($posts as $key => $array) {
+        if (strpos($key, 'news-section') !== false) {
+            foreach ($array as $post) {
+                $newsSectionPosts[] = $post;
+            }
+        }
     }
 
-    return $newsSectionPosts;
+    usort($newsSectionPosts, function ($a, $b) {
+        return strtotime($b->post_date) - strtotime($a->post_date);
+    });
+
+    return array_slice($newsSectionPosts, 0, 4);
 }
 
 /**
@@ -178,8 +202,9 @@ add_action('save_post', function ($postID, $post) {
         return;
     }
 
-    if ($post instanceof WP_Post && $post->post_type === 'post') {
+    if ($post->post_type === 'post') {
         delete_transient('__placement_posts');
+        delete_transient('__placement_post_ids');
     }
 }, 10, 2);
 
@@ -190,19 +215,24 @@ add_action('save_post', function ($postID, $post) {
  */
 function cachePlacementsPosts()
 {
-    $terms = get_terms([
-        'taxonomy' => 'placement',
+    $terms     = get_terms([
+        'taxonomy'   => 'placement',
         'hide_empty' => false,
     ]);
-    $posts = [];
-    $ids = [];
+    $posts     = [];
+    $postCount = [
+        'main'         => 1,
+        'lead'         => 3,
+        'news-section' => 4,
+    ];
 
     foreach ($terms as $term) {
-        $foundPosts = get_posts([
-            'posts_per_page' => 4,
-            'post_type'      => 'post',
-            'post_status'    => 'publish',
-            'tax_query'      => [
+        $slug               = preg_replace('/\W[0-9]+/', '', $term->slug);
+        $posts[$term->slug] = get_posts([
+            'numberposts' => $postCount[$slug],
+            'post_type'   => 'post',
+            'post_status' => 'publish',
+            'tax_query'   => [
                 [
                     'taxonomy' => 'placement',
                     'field'    => 'term_id',
@@ -210,16 +240,9 @@ function cachePlacementsPosts()
                 ]
             ]
         ]);
-
-        foreach ($foundPosts as $foundPost) {
-            $posts[$term->slug][] = $foundPost;
-            $ids[] = $foundPost->ID;
-        }
     }
 
-    ksort($posts);
-    set_transient('__placement_post_ids', $ids);
-    set_transient('__placement_posts', $posts);
+//    set_transient('__placement_posts', $posts);
 
     return $posts;
 }

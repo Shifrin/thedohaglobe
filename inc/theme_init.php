@@ -52,7 +52,8 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
     wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
-    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
+//    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
+    wp_enqueue_style('font-lato', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
     if (isInMediaCategory()) {
         wp_enqueue_style('lightbox', get_template_directory_uri() . '/css/lightbox.min.css');

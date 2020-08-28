@@ -8,12 +8,16 @@ $x = 1;
 ?>
 
 <?php if ( !empty( $posts ) ) : ?>
-    <?php foreach ( $posts as $post ) : setup_postdata( $post ) ?>
-        <?php $categories = getTheFilteredCategories(); ?>
+    <?php foreach ( $posts as $post ) : ?>
+        <?php
+        setPlacementPostIdForExclude($post->ID);
+        setup_postdata($post);
+
+        $categories = getTheFilteredCategories();
+        ?>
 
         <?php echo $x % 2 == 1 ? '<div class="row mx-n2">' : ''; ?>
-
-            <div class="col-sm-6 col-lg-6 px-2">
+            <div class="col-md-6 mb-3 mb-lg-0 px-2">
                 <?php if ( $x < 3 ) : ?>
                     <div class="card the-story">
                         <?php the_post_thumbnail( 'featured',
@@ -33,14 +37,14 @@ $x = 1;
                     </div>
                 <?php else : ?>
                     <div class="the-story row no-gutters align-items-center p-3 h-100">
-                        <div class="col-4 col-lg-3">
+                        <div class="col-3 col-lg-4">
                             <div class="story-image mr-3">
                                 <?php the_post_thumbnail( 'thumbnail', array( 'class' => 'img-fluid',
                                     'alt' => get_the_title() ) ) ?>
                             </div>
                         </div>
 
-                        <div class="col-8 col-lg-9">
+                        <div class="col-9 col-lg-8">
                             <div class="story-content">
                                 <div class="story-head mb-1">
                                     <h3 class="story-title">
@@ -58,7 +62,6 @@ $x = 1;
                     </div>
                 <?php endif ?>
             </div>
-
         <?php echo $x % 2 == 0 || $x == count( $posts ) ? '</div>' : ''; ?>
 
         <?php $x++; ?>

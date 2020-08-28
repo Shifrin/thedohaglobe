@@ -4,7 +4,7 @@
  */
 
 $categoryObj  = get_category_by_slug('infographics');
-$excludePosts = getPlacementPostIds();
+$excludePosts = getPlacementPostIdForExclude();
 ?>
 
 <?php if ($categoryObj instanceof WP_Term) : ?>

@@ -3,7 +3,7 @@
  * Template part for displaying main lead post.
  */
 
-$post = getMainLeadPost();
+$post = getMainPost();
 
 if (!empty($post)) :
     setup_postdata($post);

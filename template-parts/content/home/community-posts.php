@@ -5,7 +5,7 @@
 
 $i = 1;
 $categoryObj = get_category_by_slug( 'community' );
-$excludePosts = getPlacementPostIds();
+$excludePosts = getPlacementPostIdForExclude();
 ?>
 
 <?php if ( $categoryObj instanceof WP_Term ) : ?>
@@ -16,7 +16,7 @@ $excludePosts = getPlacementPostIds();
             </a>
         </h2>
 
-        <?php $posts = new WP_Query( array( 'category_name' => 'community', 'posts_per_page' => 5,
+        <?php $posts = new WP_Query( array( 'category_name' => 'community', 'posts_per_page' => 4,
             'post__not_in' => $excludePosts ) ); ?>
 
         <?php if ( $posts->have_posts() ) : ?>

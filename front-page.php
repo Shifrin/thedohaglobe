@@ -18,7 +18,7 @@
 
                 <div class="col-lg-7">
                     <div class="main-lead">
-                        <?php get_template_part('template-parts/content/home/main-lead'); ?>
+                        <?php get_template_part('template-parts/content/home/main-post'); ?>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="other-leads">
-                        <?php get_template_part('template-parts/content/home/other-leads'); ?>
+                        <?php get_template_part('template-parts/content/home/lead-posts'); ?>
                     </div>
                 </div>
             </div>
@@ -39,14 +39,14 @@
     <section class="section section-main">
         <div class="container-fluid">
             <div class="row no-gutters">
-                <div class="col-lg-3">
-                    <div class="brief h-100 d-none d-lg-block">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <div class="brief h-100">
                         <?php get_template_part('template-parts/content/home/brief-posts'); ?>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="news-section p-lg-3 h-100">
+                    <div class="news-section py-lg-4 px-lg-3 h-100">
                         <?php get_template_part('template-parts/content/home/news-section'); ?>
                     </div>
                 </div>
@@ -88,21 +88,6 @@
         </div>
     </section>
 
-    <!-- Video & Picture Posts -->
-    <section class="section section-videos mt-3 mt-lg-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <?php get_template_part('template-parts/content/home/video-posts'); ?>
-                </div>
-
-                <div class="col-lg-6">
-                    <?php get_template_part('template-parts/content/home/picture-posts'); ?>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Infographic & Cartoon Posts -->
     <section class="section section-infographics mt-3 mt-lg-5">
         <div class="container-fluid">
@@ -113,6 +98,21 @@
 
                 <div class="col-lg-6">
                     <?php get_template_part('template-parts/content/home/cartoon-posts'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video & Picture Posts -->
+    <section class="section section-videos mt-3 mt-lg-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/video-posts'); ?>
+                </div>
+
+                <div class="col-lg-6">
+                    <?php get_template_part('template-parts/content/home/picture-posts'); ?>
                 </div>
             </div>
         </div>

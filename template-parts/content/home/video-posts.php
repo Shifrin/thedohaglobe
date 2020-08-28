@@ -5,7 +5,7 @@
 
 $i            = 1;
 $categoryObj  = get_category_by_slug('videos');
-$excludePosts = getPlacementPostIds();
+$excludePosts = getPlacementPostIdForExclude();
 ?>
 
 <?php if ($categoryObj instanceof WP_Term) : ?>

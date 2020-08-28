@@ -539,18 +539,18 @@ function footerScript()
             }, 1000);
 
             <?php if (is_home() || is_front_page()) : ?>
-            var blurred = false;
+                var blurred = false;
 
-            window.onblur = function () {
-                blurred = true;
-            };
-            window.onfocus = function () {
-                blurred && (location.reload());
-            };
+                window.onblur = function () {
+                    blurred = true;
+                };
+                window.onfocus = function () {
+                    blurred && (location.reload());
+                };
             <?php endif; ?>
 
             <?php if (isInMediaCategory()) : ?>
-            var lightbox = new SimpleLightbox('.post-gallery a', {});
+                var lightbox = new SimpleLightbox('.post-gallery a', {});
             <?php endif; ?>
         }());
 
