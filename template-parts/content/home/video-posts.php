@@ -12,7 +12,8 @@ $excludePosts = getPlacementPostIdForExclude();
     <div class="media-posts">
         <h2 class="section-title">
             <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
-                <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
+                <?php displayIcon('play3') ?>
+                <span class="align-middle ml-1"><?php echo esc_html($categoryObj->name); ?></span>
             </a>
         </h2>
 
@@ -33,10 +34,6 @@ $excludePosts = getPlacementPostIdForExclude();
                             ]); ?>
 
                             <div class="card-body">
-                                <img src="<?php echo get_template_directory_uri() . '/img/video.svg'; ?>"
-                                     alt="Video Post"
-                                     class="card-icon shadow" width="50">
-
                                 <h3 class="card-title story-title">
                                     <?php the_title(); ?>
                                 </h3>

@@ -19,16 +19,7 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo-fade.png?' . filemtime(
                         </div>
 
                         <div class="col-lg-6">
-                            <?php
-                            wp_nav_menu(array(
-                                'theme_location'    => 'secondary',
-                                'depth'             => 2,
-                                'container'         => 'ul',
-                                'menu_class'        => 'nav secondary-nav justify-content-lg-end',
-                                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                                'walker'            => new WP_Bootstrap_Navwalker(),
-                            ));
-                            ?>
+                            <?php displaySocialMediaLinks('nav social-links justify-content-lg-end'); ?>
                         </div>
                     </div>
                 </div>

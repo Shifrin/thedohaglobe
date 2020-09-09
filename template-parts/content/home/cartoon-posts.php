@@ -11,7 +11,8 @@ $excludePosts = getPlacementPostIdForExclude();
     <div class="media-posts">
         <h2 class="section-title">
             <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
-                <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
+                <?php displayIcon('play3') ?>
+                <span class="align-middle ml-1"><?php echo esc_html($categoryObj->name); ?></span>
             </a>
         </h2>
 

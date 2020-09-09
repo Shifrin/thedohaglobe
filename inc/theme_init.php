@@ -21,9 +21,10 @@ add_action('after_setup_theme', function () {
     // This theme uses wp_nav_menu() in two locations.
     register_nav_menus(
         [
-            'primary'   => __('Primary Menu'),
-            'secondary' => __('Secondary Menu'),
-            'footer'    => __('Footer Menu'),
+            'primary'      => __('Primary Menu'),
+            'secondary'    => __('Secondary Menu'),
+            'footer'       => __('Footer Menu'),
+            'social_media' => __('Social Media'),
         ]
     );
 
@@ -51,9 +52,8 @@ add_action('after_setup_theme', function () {
  */
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
-    wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.8.0/css/all.css');
-//    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
-    wp_enqueue_style('font-lato', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    wp_enqueue_style('font-noto', 'https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap');
+//    wp_enqueue_style('font-lato', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
     if (isInMediaCategory()) {
         wp_enqueue_style('lightbox', get_template_directory_uri() . '/css/lightbox.min.css');
@@ -98,7 +98,6 @@ add_filter('excerpt_length', function () {
 /**
  * Add custom excerpt more string.
  */
-
 add_filter('excerpt_more', function () {
     return '...';
 });

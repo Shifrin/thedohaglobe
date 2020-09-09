@@ -17,10 +17,10 @@ function theBreadcrumb( $custom_home_icon = false, $custom_post_types = false )
         echo '<nav aria-label="breadcrumb">';
             echo '<ol class="breadcrumb">';
 
-            $homePage = $custom_home_icon ? $custom_home_icon : __( 'Front Page' );
+            $homeIcon = $custom_home_icon ? $custom_home_icon : displayIcon('home', false);
+            $homePage = $homeIcon . 'Front Page';
 
-            echo '<li class="breadcrumb-item"><a href="' . get_home_url() . '"><i class="fas fa-home"></i> '
-                . $homePage . '</a></li>';
+            echo '<li class="breadcrumb-item"><a href="' . get_home_url() . '">' . $homePage . '</a></li>';
 
             if ( is_category() ) {
                 echo '<li class="breadcrumb-item active" aria-current="page">'

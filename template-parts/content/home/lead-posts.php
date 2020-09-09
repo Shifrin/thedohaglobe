@@ -37,7 +37,8 @@ if (!empty($posts)) : ?>
                                 <?php if (!empty($category)) : ?>
                                     <a href="<?php echo esc_url(get_category_link($category[0]->term_id)); ?>"
                                        class="story-category mt-1">
-                                        <i class="fas fa-caret-right"></i> <?php echo esc_html($category[0]->name); ?>
+                                        <?php displayIcon('play3') ?>
+                                        <span class="align-middle ml-1"><?php echo esc_html($category[0]->name); ?></span>
                                     </a>
                                 <?php endif; ?>
                             </div>

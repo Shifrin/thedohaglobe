@@ -3,29 +3,37 @@
  * Template part to displaying community posts in the home page.
  */
 
-$i = 1;
-$categoryObj = get_category_by_slug( 'community' );
+$i            = 1;
+$categoryObj  = get_category_by_slug('community');
 $excludePosts = getPlacementPostIdForExclude();
 ?>
 
-<?php if ( $categoryObj instanceof WP_Term ) : ?>
+<?php if ($categoryObj instanceof WP_Term) : ?>
     <div class="community-posts">
         <h2 class="section-title">
-            <a href="<?php echo esc_url( get_category_link( $categoryObj ) ); ?>">
-                <i class="fas fa-caret-right"></i> <?php echo esc_html( $categoryObj->name ); ?>
+            <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
+                <?php displayIcon('play3') ?>
+                <span class="align-middle ml-1"><?php echo esc_html($categoryObj->name); ?></span>
             </a>
         </h2>
 
-        <?php $posts = new WP_Query( array( 'category_name' => 'community', 'posts_per_page' => 4,
-            'post__not_in' => $excludePosts ) ); ?>
+        <?php
+        $posts = new WP_Query([
+            'category_name'  => $categoryObj->slug,
+            'posts_per_page' => 4,
+            'post__not_in'   => $excludePosts
+        ])
+        ?>
 
-        <?php if ( $posts->have_posts() ) : ?>
+        <?php if ($posts->have_posts()) : ?>
             <div class="row mx-n2">
-                <?php while ( $posts->have_posts() ) : $posts->the_post(); ?>
+                <?php while ($posts->have_posts()) : $posts->the_post(); ?>
                     <div class="col-sm-6 col-lg px-2">
                         <a href="<?php the_permalink(); ?>" class="card text-center the-story h-100 rounded-0">
-                            <?php the_post_thumbnail( 'featured', array( 'class' => 'card-img-top img-fluid rounded-0',
-                                'alt' => get_the_title() ) ); ?>
+                            <?php the_post_thumbnail('featured', [
+                                'class' => 'card-img-top img-fluid rounded-0',
+                                'alt'   => get_the_title()
+                            ]); ?>
 
                             <div class="card-body">
                                 <h3 class="card-title story-title">

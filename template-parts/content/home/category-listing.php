@@ -18,7 +18,8 @@ $excludePosts = getPlacementPostIdForExclude();
                 <?php if ($categoryObj instanceof WP_Term) : ?>
                     <h2 class="section-title<?php echo $key !== 0 ? ' mt-4 mt-lg-0' : ''; ?>">
                         <a href="<?php echo esc_url(get_category_link($categoryObj)); ?>">
-                            <i class="fas fa-caret-right"></i> <?php echo esc_html($categoryObj->name); ?>
+                            <?php displayIcon('play3') ?>
+                            <span class="align-middle ml-1"><?php echo esc_html($categoryObj->name); ?></span>
                         </a>
                     </h2>
 

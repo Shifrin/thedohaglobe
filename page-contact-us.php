@@ -61,7 +61,10 @@
 
                                         <div class="form-group mb-0">
                                             <button type="submit" class="btn btn-success btn-lg btn-block" id="submit" name="submit">
-                                                <i class="fas fa-circle-notch fa-spin d-none"></i> <span><?php _e('Submit'); ?></span>
+                                                <svg class="spinner d-none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="50" cy="50" r="45"/>
+                                                </svg>
+                                                <span><?php _e('Submit'); ?></span>
                                             </button>
                                         </div>
                                     </form>

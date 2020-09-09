@@ -30,7 +30,8 @@ $x = 1;
 
                             <?php if ( !empty( $categories ) ) : ?>
                                 <a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ); ?>" class="story-category mt-auto card-link">
-                                    <i class="fas fa-caret-right"></i> <?php echo esc_html( $categories[0]->name ); ?>
+                                    <?php displayIcon('play3') ?>
+                                    <span class="align-middle ml-1"><?php echo esc_html($categories[0]->name); ?></span>
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -54,7 +55,8 @@ $x = 1;
 
                                 <?php if ( !empty( $categories ) ) : ?>
                                     <a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ); ?>" class="story-category card-link">
-                                        <i class="fas fa-caret-right"></i> <?php echo esc_html( $categories[0]->name ); ?>
+                                        <?php displayIcon('play3') ?>
+                                        <span class="align-middle ml-1"><?php echo esc_html($categories[0]->name); ?></span>
                                     </a>
                                 <?php endif; ?>
                             </div>

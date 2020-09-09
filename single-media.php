@@ -57,7 +57,7 @@
                 </header>
 
                 <div class="page-content text-center">
-                    <?php if ($category[0]->slug == 'pictures') : ?>
+                    <?php if ($category[0]->slug === 'pictures') : ?>
                         <?php $images = get_attached_media('image'); ?>
 
                         <div class="row row-cols-1 row-cols-md-3 post-gallery">
@@ -75,9 +75,9 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                    <?php else : ?>
+                        <?php the_content(); ?>
                     <?php endif; ?>
-
-                    <?php the_content(); ?>
                 </div>
             <?php endwhile; ?>
         </div>

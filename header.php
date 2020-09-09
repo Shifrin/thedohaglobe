@@ -2,8 +2,7 @@
 /**
  * The template for displaying the header
  */
-$logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
-        get_stylesheet_directory() . '/img/logo.png');
+$logoUrl = get_stylesheet_directory_uri() . '/img/logo.png';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -36,8 +35,14 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="datetime">
-                                <span class="badge badge-secondary"><?php echo date('l, j F Y'); ?></span>
-                                <span id="clock" class="badge badge-dark ml-2"></span>
+                                <span class="badge badge-secondary">
+                                    <?php displayIcon('calendar') ?>
+                                    <span class="align-middle ml-1"><?php echo date('l, j F Y'); ?></span>
+                                </span>
+                                <span id="clock" class="badge badge-dark ml-2">
+                                    <?php displayIcon('clock') ?>
+                                    <span class="align-middle ml-1"></span>
+                                </span>
                             </div>
                         </div>
 
@@ -46,16 +51,19 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
                                 <nav class="nav justify-content-end">
                                     <?php if (is_user_logged_in()) : ?>
                                         <a href="<?php echo esc_url(wp_logout_url()); ?>" class="nav-link link-login">
-                                            <i class="fas fa-sign-out-alt"></i> <?php _e('Sign Out'); ?>
+                                            <?php displayIcon('exit') ?>
+                                            <span class="align-middle ml-1"><?php _e('Sign Out'); ?></span>
                                         </a>
                                     <?php else : ?>
                                         <a href="<?php echo esc_url(wp_login_url()); ?>" class="nav-link link-login">
-                                            <i class="fas fa-sign-in-alt"></i> <?php _e('Sign In'); ?>
+                                            <?php displayIcon('enter') ?>
+                                            <span class="align-middle ml-1"><?php _e('Sign In'); ?></span>
                                         </a>
                                     <?php endif; ?>
 
                                     <a href="<?php echo esc_url(home_url('/search')); ?>" class="nav-link link-search">
-                                        <i class="fas fa-search"></i> <?php _e('Search'); ?>
+                                        <?php displayIcon('search') ?>
+                                        <span class="align-middle ml-1"><?php _e('Search'); ?></span>
                                     </a>
                                 </nav>
                             </div>
@@ -65,7 +73,8 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
 
                 <div class="header-middle my-2 text-center">
                     <a href="<?php echo esc_url(home_url()); ?>" class="d-inline-block logo mx-auto text-center">
-                        <img src="<?php echo esc_url($logoUrl) ?>" class="logo-image img-fluid" width="400">
+                        <img src="<?php echo esc_url($logoUrl) ?>" alt="The Doha Globe Logo"
+                             class="logo-image img-fluid" width="400">
                     </a>
                 </div>
             </div>
@@ -80,22 +89,22 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
+                    <?php displayIcon('menu2') ?>
                 </button>
 
                 <nav class="navbar-nav administrative-links ml-auto flex-row d-lg-none d-xl-none">
                     <?php if (is_user_logged_in()) : ?>
                         <a href="<?php echo esc_url(wp_logout_url()); ?>" class="nav-item nav-link link-login">
-                            <i class="fas fa-sign-out-alt"></i>
+                            <?php displayIcon('exit') ?>
                         </a>
                     <?php else : ?>
                         <a href="<?php echo esc_url(wp_login_url()); ?>" class="nav-item nav-link link-login">
-                            <i class="fas fa-sign-in-alt"></i>
+                            <?php displayIcon('enter') ?>
                         </a>
                     <?php endif; ?>
 
                     <a href="<?php echo esc_url(home_url('/search')); ?>" class="nav-item nav-link link-search">
-                        <i class="fas fa-search"></i>
+                        <?php displayIcon('search') ?>
                     </a>
                 </nav>
 
@@ -111,16 +120,7 @@ $logoUrl = get_stylesheet_directory_uri() . '/img/logo.png?' . filemtime(
                     ]);
                     ?>
 
-                    <?php
-                    wp_nav_menu([
-                        'theme_location' => 'secondary',
-                        'depth'          => 2,
-                        'container'      => 'ul',
-                        'menu_class'     => 'navbar-nav secondary-nav flex-row',
-                        'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
-                        'walker'         => new WP_Bootstrap_Navwalker(),
-                    ]);
-                    ?>
+                    <?php displaySocialMediaLinks('navbar-nav social-links'); ?>
                 </div>
             </div>
         </nav>

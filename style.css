@@ -10,13 +10,13 @@ Version: 2.0
 /* Primary old color: #311127 */
 
 :root {
-    --font: 'Lato', sans-serif;
+    /*--font: 'Lato', sans-serif;*/
+    --font: 'Noto Serif', serif;
 }
 
 /* General */
 body {
     font-family: var(--font);
-    /*font-family: 'Noto Serif', serif;*/
 }
 
 .h1,
@@ -141,7 +141,7 @@ p.description {
     margin-right: auto !important;
 }
 
-.navbar:not(.fixed-top) .secondary-nav {
+.navbar:not(.fixed-top) .social-links {
     margin-left: auto !important;
 }
 
@@ -149,9 +149,6 @@ p.description {
     color: #202020 !important;
 }
 
-/*.navbar:not(.fixed-top) .primary-nav .nav-item:first-child .nav-link {*/
-/*    padding-left: 0;*/
-/*}*/
 .primary-nav .active .nav-link {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
@@ -159,32 +156,41 @@ p.description {
     background-color: #202020;
 }
 
-.secondary-nav .nav-link {
+.social-links .nav-link {
     width: 2em;
     height: 2em;
     padding: 0 !important;
     border: 1px solid #202020;
     border-radius: 50%;
     text-align: center;
-}
-
-.navbar .secondary-nav .nav-link {
     background-color: #202020;
     color: #fff;
 }
 
-.navbar .secondary-nav .nav-link:hover,
-.navbar .secondary-nav .nav-link:focus {
+.social-links .nav-link > svg {
+    margin-top: 4px;
+    fill: #ffffff;
+}
+
+.social-links .nav-link:hover,
+.social-links .nav-link:focus {
     background-color: #fff;
     color: #202020;
 }
 
-.secondary-nav > .nav-item:not(:first-child) > .nav-link {
+.social-links .nav-link:hover > svg,
+.social-links .nav-link:focus > svg {
+    fill: #202020;
+}
+
+.social-links > .nav-item:not(:first-child) > .nav-link {
     margin-left: 0.5rem;
 }
 
-.secondary-nav > .nav-item > .nav-link > i {
-    line-height: 31px;
+.navbar-toggler {
+    padding: 0;
+    border: none !important;
+    outline: none !important;
 }
 
 @media (max-width: 991.98px) {
@@ -523,10 +529,18 @@ a.columnist-name {
     border-radius: 0;
 }
 
-.trending-news:not(.trending-widget),
-.offers:not(.offers-widget) {
+.trending-wrap {
+    background-color: #58595b;
     border: 2px solid #202020;
 }
+.trending-news:not(.trending-widget) {
+    background-color: #fff;
+}
+
+/*.trending-news:not(.trending-widget),*/
+/*.offers:not(.offers-widget) {*/
+/*    border: 2px solid #202020;*/
+/*}*/
 
 .trending-news .section-title,
 .offers .section-title > a {
@@ -710,17 +724,19 @@ a.columnist-name {
     background: rgba(0, 0, 0, 0.65);
 }
 
-.footer-top .secondary-nav {
+.footer-top .social-links {
     height: 47px;
 }
 
-.footer-top .secondary-nav > .nav-item {
+.footer-top .social-links .nav-link {
     margin: auto 0;
+    color: #939598;
+    border-color: #939598;
+    background-color: transparent;
 }
 
-.footer-top .secondary-nav > .nav-item > .nav-link {
-    color: #939598 !important;
-    border-color: #939598;
+.footer-top .social-links .nav-link > svg {
+    fill: #939598;
 }
 
 .site-info-links .nav-link {
@@ -732,4 +748,83 @@ a.columnist-name {
     padding-top: 1rem;
     border-top: 2px solid #fff;
     font-size: 90%;
+}
+
+/* Icons */
+svg.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+/* Spinner Animation */
+svg.spinner {
+    width: 20px;
+    animation: 2s linear infinite svg-animation;
+    max-width: 100px;
+    fill: currentColor;
+}
+
+/* SVG animation */
+@keyframes svg-animation {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg)
+    }
+}
+
+/* Circle styles */
+svg.spinner circle {
+    animation: 1.4s ease-in-out infinite both circle-animation;
+    display: block;
+    fill: transparent;
+    stroke: #2f3d4c;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 280;
+    stroke-width: 10px;
+    transform-origin: 50% 50%;
+}
+
+/* Circle animation. */
+@keyframes circle-animation {
+    0%,
+    25% {
+        stroke-dashoffset: 280;
+        transform: rotate(0);
+    }
+
+    50%,
+    75% {
+        stroke-dashoffset: 75;
+        transform: rotate(45deg);
+    }
+
+    100% {
+        stroke-dashoffset: 280;
+        transform: rotate(360deg);
+    }
+}
+
+/* Ads */
+.ads {
+
+}
+
+.ads > div {
+    border-top: 2px solid #202020;
+}
+.ads svg.icon {
+    width: 64px;
+    height: 64px;
+    fill: #fff;
+}
+.ads span {
+    color: #fff;
+    font-size: 2rem;
 }

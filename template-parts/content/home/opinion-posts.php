@@ -12,7 +12,8 @@ $editorInChiefObj = get_category_by_slug( 'khalid-al-sayed' );
 <?php if ( $opinion instanceof WP_Term ) : ?>
     <h2 class="section-title">
         <a href="<?php echo esc_url( get_category_link( $opinion ) ); ?>" class="text-white">
-            <i class="fas fa-caret-right"></i> <?php echo esc_html( $opinion->name ); ?>
+            <?php displayIcon('play3') ?>
+            <span class="align-middle ml-1"><?php echo esc_html($opinion->name); ?></span>
         </a>
     </h2>
 

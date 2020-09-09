@@ -232,9 +232,9 @@ function getTrendingNews($number_of_posts)
         'meta_key'       => 'views',
         'orderby'        => 'meta_value_num',
         'posts_per_page' => $number_of_posts,
-        'date_query'     => [
-            ['after' => '-7 days']
-        ],
+//        'date_query'     => [
+//            ['after' => '-7 days']
+//        ],
     ]);
 }
 
@@ -440,12 +440,12 @@ function loadMoreScript()
                         type: 'POST',
                         beforeSend: function () {
                             $button.find('span').addClass('d-none');
-                            $button.find('i').removeClass('d-none');
+                            $button.find('svg').removeClass('d-none');
                             $button.prop('disabled', true);
                         },
                         success: function (response) {
                             $button.find('span').removeClass('d-none');
-                            $button.find('i').addClass('d-none');
+                            $button.find('svg').addClass('d-none');
                             $button.prop('disabled', false);
 
                             if (response) {
@@ -535,22 +535,22 @@ function footerScript()
             var clockEle = document.getElementById('clock');
 
             setInterval(function () {
-                clockEle.innerHTML = new Date().toLocaleTimeString();
+                clockEle.getElementsByTagName('span')[0].innerHTML = new Date().toLocaleTimeString();
             }, 1000);
 
             <?php if (is_home() || is_front_page()) : ?>
-                var blurred = false;
+            var blurred = false;
 
-                window.onblur = function () {
-                    blurred = true;
-                };
-                window.onfocus = function () {
-                    blurred && (location.reload());
-                };
+            window.onblur = function () {
+                blurred = true;
+            };
+            window.onfocus = function () {
+                blurred && (location.reload());
+            };
             <?php endif; ?>
 
             <?php if (isInMediaCategory()) : ?>
-                var lightbox = new SimpleLightbox('.post-gallery a', {});
+            var lightbox = new SimpleLightbox('.post-gallery a', {});
             <?php endif; ?>
         }());
 
@@ -588,7 +588,7 @@ function footerScript()
                     encode: true,
                     beforeSend: function () {
                         submitBtn.find('span').addClass('d-none');
-                        submitBtn.find('i').removeClass('d-none');
+                        submitBtn.find('svg').removeClass('d-none');
                         submitBtn.prop('disabled', true);
                         $('.invalid-feedback').remove();
                         $('#contactform input, #contactform textarea').removeClass(errorClass +
@@ -596,7 +596,7 @@ function footerScript()
                     }
                 }).done(function (data) {
                     submitBtn.find('span').removeClass('d-none');
-                    submitBtn.find('i').addClass('d-none');
+                    submitBtn.find('svg').addClass('d-none');
                     submitBtn.prop('disabled', false);
 
                     if (data.success) {
@@ -934,6 +934,14 @@ function categoryBasedSingleTemplate($single_template)
         }
     }
 
+    if ($categories[0]->slug === 'qatar-top-5') {
+        $template = get_template_directory() . '/single-qatar-top-5.php';
+
+        if (file_exists($template)) {
+            $single_template = $template;
+        }
+    }
+
     return $single_template;
 }
 
@@ -958,3 +966,54 @@ function modifyWpOEmbedOutput($html)
 }
 
 add_filter('embed_oembed_html', 'modifyWpOEmbedOutput', 99, 4);
+
+/**
+ * @param string $iconName the icon svg file name.
+ * @param boolean $display weather to echo or return.
+ *
+ * @return string|null the icon url
+ */
+function displayIcon($iconName, $display = true)
+{
+    $svg  = get_stylesheet_directory() . '/svg/' . $iconName . '.svg';
+    $html = '';
+
+    if (file_exists($svg)) {
+        $html = file_get_contents($svg);
+    }
+
+    if ($display) {
+        echo $html;
+    } else {
+        return $html;
+    }
+}
+
+/**
+ * Display social media links.
+ *
+ * @param $class
+ */
+function displaySocialMediaLinks($class = '')
+{
+    $locations    = get_nav_menu_locations();
+
+    if (isset($locations['social_media'])) {
+        $wpMenu = get_term($locations['social_media'], 'nav_menu');
+        $items  = wp_get_nav_menu_items($wpMenu->term_id);
+        $list   = '<ul class="' . $class . '">' . "\n";
+
+        foreach ($items as $item) {
+            $icon = displayIcon($item->title, false);
+            $list .= '<li class="nav-item">' . "\n";
+            $list .= '<a href="' . $item->url . '" class="nav-link">' . $icon . '</a>' . "\n";
+            $list .= '</li>' . "\n";
+        }
+
+        $list .= '</ul>' . "\n";
+
+        echo $list;
+    }
+
+    echo '';
+}

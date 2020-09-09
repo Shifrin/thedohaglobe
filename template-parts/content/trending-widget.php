@@ -10,7 +10,8 @@ $i = 1;
 <?php if ( $trendingPosts->have_posts() ) : ?>
     <div class="trending-news trending-widget">
         <h2 class="section-title">
-            <i class="fas fa-caret-right"></i> <?php _e( 'Trending' ); ?>
+            <?php displayIcon('play3') ?>
+            <span class="align-middle ml-1"><?php _e('Trending'); ?></span>
         </h2>
 
         <?php while ( $trendingPosts->have_posts() ) : $trendingPosts->the_post(); ?>
