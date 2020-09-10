@@ -4,7 +4,7 @@
  */
 
 $i            = 1;
-$categoryObj  = get_category_by_slug('schools-and-colleges');
+$categoryObj  = get_category_by_slug('education');
 $excludePosts = getPlacementPostIdForExclude();
 ?>
 

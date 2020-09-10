@@ -88,6 +88,13 @@
         </div>
     </section>
 
+    <!-- Education Posts -->
+    <section class="section section-education mt-3 mt-lg-5">
+        <div class="container-fluid">
+            <?php get_template_part('template-parts/content/home/education-posts'); ?>
+        </div>
+    </section>
+
     <!-- Infographic & Cartoon Posts -->
     <section class="section section-infographics mt-3 mt-lg-5">
         <div class="container-fluid">
@@ -118,17 +125,10 @@
         </div>
     </section>
 
-    <!-- School & College Posts -->
-    <section class="section section-schools mt-3 mt-lg-5">
-        <div class="container-fluid">
-            <?php get_template_part('template-parts/content/home/school-college-posts'); ?>
-        </div>
-    </section>
-
     <!-- Qatar Top 5 Posts -->
     <section class="section section-schools mt-3 mt-lg-5">
         <div class="container-fluid">
-            <?php get_template_part('template-parts/content/home/qatar-top-5-posts'); ?>
+            <?php get_template_part('template-parts/content/home/qatar-top-five-posts'); ?>
         </div>
     </section>
 

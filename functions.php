@@ -232,9 +232,9 @@ function getTrendingNews($number_of_posts)
         'meta_key'       => 'views',
         'orderby'        => 'meta_value_num',
         'posts_per_page' => $number_of_posts,
-//        'date_query'     => [
-//            ['after' => '-7 days']
-//        ],
+        'date_query'     => [
+            ['after' => '-7 days']
+        ],
     ]);
 }
 
